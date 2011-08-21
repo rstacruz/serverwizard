@@ -60,7 +60,7 @@ class Script
   end
 
   def sort_position
-    (meta[:position] || 50).to_i
+    [ (meta[:position] || 50).to_i, id ]
   end
 
   def description
