@@ -12,6 +12,7 @@ body
 
 form
   margin: 20px auto
+  overflow: hidden
   width: 400px
   padding: 0
   background: white
@@ -67,7 +68,7 @@ form
   p.submit
     text-align: center
     padding: 10px
-    background: #aaa
+    +gradient(#ddd, #ddd * 0.95)
     margin: 1px
     +border-bottom-radius(4px)
 
@@ -97,9 +98,23 @@ hgroup
   +border-radius(4px)
   background: white
   width: 600px
-  margin: 0 auto
+  margin: 40px auto
   padding: 20px
+  +box-shadow(0 0 10px rgba(black, 0.2))
   text-align: center
+
+  p.mute
+    margin-top: 0
+    color: #aaa
+    a
+      color: #888
+      font-weight: normal
+
+  p.strong
+    margin-bottom: 0
+    font-size: 1.2em
+    font-weight: bold
+    color: #333
 
   input.command
     width: 100%
@@ -107,6 +122,7 @@ hgroup
     border: solid 1px #ccc
     font-size: 10pt
     text-align: center
+    margin: 10px auto
     +box-sizing(border-box)
 
   textarea

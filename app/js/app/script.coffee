@@ -27,12 +27,6 @@ $("input.command").live 'focus click', ->
   @selectionStart = 0
   @selectionEnd = 99999
 
-$("a[role=show-contents]").live 'click', ->
-  $(".contents").show()
-  $(this).hide()
-
-  false
-
 $ ->
   check = (value) ->
     $el = $("input[type=checkbox][value=#{value}]")

@@ -27,21 +27,11 @@ gem "rtopia", "~> 0.2.3"
 gem "maruku"
 
 gem "hashie", "~> 1.0.0"
-
-# Stuff you may also need:
-
-# # Sequel ORM
-# gem "sequel"
-# gem "sinatra-sequel", require: "sinatra/sequel"
-# gem "sqlite3", group: [:test, :development]
-# gem "mysql",   group: :production
+gem "RedCloth", "~> 4.2.7"
 
 # # CoffeeScript support (with Heroku support)
 gem "coffee-script", require: "coffee_script"
 gem "therubyracer-heroku", "0.8.1.pre3", require: false
-
-# # Internationalization
-# gem "i18n"
 
 group :test do
   # Contexts for test/unit
