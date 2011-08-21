@@ -18,6 +18,14 @@ installing() {
     echo -e "\033[0;32m*** Installing: $*...\033[0;m"
 }
 
+cat_file() {
+  if [ -f $* ]; then
+    cat $*
+  else
+    curl -s "http://HTTP_HOST/$*"
+  fi
+}
+
 # Ensure Linux-ness
 if [ ! -f "/etc/lsb-release" ]; then
   echo "Error: This platform is not supported."

@@ -10,7 +10,7 @@ passenger-install-nginx-module --auto --auto-download --prefix=/opt/nginx
 
 # Yeah
 installing "Nginx service script"
-curl -s http://HTTP_HOST/nginx/nginx > /etc/init.d/nginx
+cat_file nginx/nginx > /etc/init.d/nginx
 chown root:root /etc/init.d/nginx
 chmod 755 /etc/init.d/nginx
 
