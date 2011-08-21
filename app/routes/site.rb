@@ -5,7 +5,7 @@ class Main
     haml :home
   end
 
-  get '/script' do
+  post '/script' do
     redirect '/'  unless params[:recipes].to_s.size > 0
     redirect '/'  if params[:custom] && params[:custom].any? && params[:custom].any? { |k, v| v.to_s.empty? }
 
