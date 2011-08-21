@@ -1,0 +1,24 @@
+- title "Welcome!"
+
+%hgroup
+  %h1 Server bootstrap script generator
+  %p
+    Select all the things you need in your server then click "Generate."
+    We'll come up with a script for you.
+
+%form{:action => '/script', :method => 'get'}
+  - Script.all.each do |script|
+    %article
+      %label
+        %input{:type => 'checkbox', :name => 'recipes[]', :value => script.id}
+        %strong= script.name
+        %span.desc= script.description
+
+      - script.fields.each do |field|
+        %p.custom.hide
+          %label
+            = "#{field.name}:"
+          %input{:disabled => true, :type => 'text', :name => "custom[#{field.id}]", :value => field.default}
+
+  %p.submit
+    %button{:type => "submit"} Generate

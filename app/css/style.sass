@@ -1,0 +1,115 @@
+@import 'settings'
+
+$reset-font: arial, sans-serif
+@include ae-reset
+
+.hide
+  display: none
+
+body
+  background: #eee
+  font-family: lato, sans-serif
+
+form
+  margin: 20px auto
+  width: 400px
+  padding: 0
+  background: white
+
+  +border-radius(4px)
+  +box-shadow(1px 1px 10px rgba(black, 0.1))
+
+  article
+    border-top: solid 1px #ddd
+    padding: 0 10px
+    margin: 0
+    font-size: 10pt
+
+    &:first-child
+      border-top: 0
+
+    label
+      display: block
+      padding: 15px 10px
+
+    label .desc
+      font-size: 0.8em
+      color: #aaa
+      font-style: italic
+      margin-left: 10px
+
+  .custom
+    background: #eee
+    border-top: solid 1px #ddd
+    display: block
+    margin: 0 -10px
+    padding: 10px
+    overflow: hidden
+    font-size: 8pt
+
+    label
+      padding: 0
+      float: left
+      width: 30%
+      line-height: 25px
+      height: 25px
+      overflow: hidden
+
+    input
+      width: 68%
+      padding: 4px
+      height: 25px
+      +box-sizing(border-box)
+
+    &.hide
+      display: none
+
+  p.submit
+    text-align: center
+    padding: 10px
+    background: #aaa
+    margin: 1px
+    +border-bottom-radius(4px)
+
+hgroup
+  text-align: center
+  width: 400px
+  margin: 40px auto 20px auto
+
+  h1, p
+    margin: 0
+    padding: 0
+
+  h1
+    font-family: sans-serif
+    font-weight: normal
+    font-size: 18pt
+
+  p
+    font-family: palatino, serif
+    color: #888
+    font-size: 10pt
+
+
+// ============================================================================
+
+#output
+  +border-radius(4px)
+  background: white
+  width: 600px
+  margin: 0 auto
+  padding: 20px
+  text-align: center
+
+  input.command
+    width: 100%
+    padding: 10px
+    border: solid 1px #ccc
+    font-size: 10pt
+    text-align: center
+    +box-sizing(border-box)
+
+  textarea
+    width: 100%
+    height: 400px
+    +box-sizing(border-box)

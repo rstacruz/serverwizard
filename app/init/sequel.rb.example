@@ -1,0 +1,39 @@
+# Also do:
+# - Add sinatra-sequel to the Gemfile
+# - Rename migrations.rb.example to migrations.rb
+
+Sequel::Model.plugin :validation_helpers
+
+Sequel.extension :inflector
+Sequel.extension :pagination
+
+class Main
+  register Sinatra::SequelExtension
+
+  def self.models
+    Object.constants.
+      map    { |c| Object.const_get(c) }.
+      select { |c| c.is_a?(Class) && c.ancestors.include?(Sequel::Model) }
+  end
+
+  def self.db_flush!(&blk)
+    database.tables.each { |t|
+      yield t  if block_given?
+      database.drop_table t
+    }
+  end
+
+  def self.run_migrations!(&blk)
+    load root('app/init/migrations.rb')
+  end
+end
+
+# Rename lib/tasks/sequel.rake.example for rake tasks.
+# Add to test/helper.rb:
+#
+#   setup do
+#     Main.set :migrations_log, lambda { StringIO.new }
+#     Main.db_flush!
+#     Main.db_auto_migrate!
+#   end
+
