@@ -1,4 +1,4 @@
-# name: NodeJS
+# name: NodeJS with NPM
 
 installing "NodeJS"
 sudo apt-get install -y python-software-propreties

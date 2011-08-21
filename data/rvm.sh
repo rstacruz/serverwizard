@@ -11,7 +11,7 @@ status "Installing Ruby via RVM"
 rvm install ruby-1.9.2-p180
 rvm use ruby-1.9.2-p180 --default
 
-if [ "$MY_USER" != "" ]; then
+if [ -n "$MY_USER" ]; then
   status "Giving $MY_USER RVM rights"
   sudo adduser $MY_USER rvm
 fi
