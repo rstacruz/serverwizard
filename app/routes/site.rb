@@ -14,7 +14,7 @@ class Main
 
     @url = url
     @command = "sudo bash < <(curl -s #{url})"
-    @contents = Script.build(params[:recipes], params[:custom])
+    @contents = build_script(params[:recipes], params[:custom])
 
     haml :script
   end
@@ -25,10 +25,16 @@ class Main
 
     recipes = recipes.split(' ')
 
-    Script.build(recipes, params)
+    build_script recipes, params
   end
 
   helpers do
+    def build_script(recipes, custom)
+      output = Script.build(recipes, custom)
+      output.gsub! "HTTP_HOST", request.env['HTTP_HOST']
+      output
+    end
+
     def kv(hash)
       return ""  unless hash.is_a?(Hash) && hash.any?
 
