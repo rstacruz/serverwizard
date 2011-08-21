@@ -1,5 +1,6 @@
 # name: Ruby 1.9.2
 # position: 30
+# description: Compiled from source.
 
 PWD="`pwd`"
 
