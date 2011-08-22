@@ -41,6 +41,10 @@ class Script
 
     output += contents.join("\n\n")
 
+    output += "\n\n" + heading("Done")
+    output += Script['_done'].contents
+    output
+
   end
 
   attr_reader :id
