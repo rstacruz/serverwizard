@@ -17,3 +17,6 @@ if [ -n "$MY_USER" ]; then
   status "Giving $MY_USER RVM rights"
   sudo adduser $MY_USER rvm
 fi
+
+status "RVM is installed."
+status "Note: You may need to log out first to use it."
