@@ -12,3 +12,7 @@ if [ -n "$SSH_PUBKEY" ]; then
   chmod 400 /home/git/.ssh/authorized_keys
   chown -R git:git /home/git/.ssh
 fi
+
+status "Git user created."
+status "To create a repo:  command sudo -u git git init --bare /home/git/myrepo.git"
+status "To use that repo:  git add git@SERVERNAME:myrepo.git"
