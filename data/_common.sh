@@ -1,5 +1,7 @@
 # name: Common
 
+DIR="`pwd`"
+
 status() {
     echo -e "\033[0;32m*** $*\033[0;m"
 }
@@ -18,8 +20,8 @@ installing() {
 }
 
 cat_file() {
-  if [ -f "$*" ]; then
-    cat "$*"
+  if [ -f "$DIR/$*" ]; then
+    cat "$DIR/$*"
   else
     wget "http://HTTP_HOST/$*" -q -O -
   fi

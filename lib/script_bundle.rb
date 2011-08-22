@@ -35,8 +35,8 @@ class ScriptBundle
 
       cmd = "#{mkdir} && #{wget}"
 
-      [ "# Note: this script relies on a few files from the http://HTTP_HOST server.",
-        "# If you don't like this, download the files like so:",
+      [ "# Note: this script relies on a few files from the http://HTTP_HOST",
+        "# server. To freeze these dependencies, download them like so:",
         "#",
         "#     #{cmd}\n\n"
       ].flatten.join("\n")

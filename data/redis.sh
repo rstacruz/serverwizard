@@ -3,8 +3,6 @@
 # files:
 #  - redis/redis
 
-DIR="`pwd`"
-
 ensure_updated_apt
 apt-get install -y gcc make
 
