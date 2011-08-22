@@ -45,13 +45,15 @@ class AppTest < UnitTest
     prefix = "#{path}/bootstrap"
 
     FileUtils.mkdir_p path
-    system "cd \"#{path}\" && tar -zxf #{t.path}; ls -la"
+    system "cd \"#{path}\" && tar -zxf #{t.path}"
 
     File.file?("#{prefix}/remote.sh").should == true
     File.file?("#{prefix}/bootstrap.sh").should == true
     File.file?("#{prefix}/nginx/nginx").should == true
     File.file?("#{prefix}/nginx/nginx.conf").should == true
     File.file?("#{prefix}/nginx/conf.d/virtual.conf").should == true
+    File.stat( "#{prefix}/remote.sh").mode.should == 0100755
+    File.stat( "#{prefix}/bootstrap.sh").mode.should == 0100755
 
     FileUtils.rm_rf path
   end

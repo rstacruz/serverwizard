@@ -1,3 +1,5 @@
+#!/usr/bin/env sh
+
 if [ $# == 0 ]; then
     echo Usage: $0 user@hostname
     exit 65

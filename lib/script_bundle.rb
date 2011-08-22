@@ -23,6 +23,10 @@ class ScriptBundle
     # Add the main bootstrap file
     File.open("#{prefix}/bootstrap.sh", 'w') { |f| f.write build(:no_files => true) }
 
+    # 755
+    FileUtils.chmod 0100755, "#{prefix}/bootstrap.sh"
+    FileUtils.chmod 0100755, "#{prefix}/remote.sh"
+
     # Add files
     files.each { |f|
       FileUtils.mkdir_p File.dirname("#{prefix}/#{f}")
