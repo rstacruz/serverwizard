@@ -27,6 +27,10 @@ cat_file() {
   fi
 }
 
+source_file() {
+  cat_file $* | source /dev/stdin
+}
+
 ensure_updated_apt() {
   if [ "$UPDATED_APT" != "1" ]; then
     status "Updating apt cache..."

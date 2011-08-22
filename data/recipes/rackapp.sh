@@ -4,6 +4,8 @@
 # implies:
 #   - nginx_passenger
 #   - git
+# files:
+#   - nginx/conf.d/app.conf.sh
 # fields:
 #   APP_USER: Username (text)
 #   APP_DOMAIN: Domain name (text)
@@ -51,17 +53,7 @@ status "Setting up logs ($APP_LOGS_PATH)..."
 mkdir -p $APP_LOGS_PATH
 
 status "Adding Nginx configuration ($APP_NGINX_CONF)..."
-(
-  echo "server {"
-  echo "    listen 80;"
-  echo "    server_name $APP_DOMAIN;"
-  echo "    passenger_enabled on;"
-  echo "    rack_env production;"
-  echo "    root $APP_REPO_PATH/public;"
-  echo "    access_log $APP_LOGS_PATH/access.log;"
-  echo "    error_log  $APP_LOGS_PATH/error.log;"
-  echo "}"
-) > $APP_NGINX_CONF
+source_file nginx/conf.d/app.conf.sh > $APP_NGINX_CONF
 
 cd "$APP_PATH/current"
 status "Setting up application..."

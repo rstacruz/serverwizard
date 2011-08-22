@@ -34,7 +34,7 @@ PASSENGER_ROOT="`gem which phusion_passenger`"
 PASSENGER_ROOT="${PASSENGER_ROOT%/lib/*}"
 
 installing "Nginx configuration files"
-cat_file nginx/nginx.conf.sh | source /dev/stdin > /opt/nginx/conf/nginx.conf
+source_file nginx/nginx.conf.sh > /opt/nginx/conf/nginx.conf
 chown root:root /opt/nginx/conf/nginx.conf
 chmod 644 /opt/nginx/conf/nginx.conf
 
