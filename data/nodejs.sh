@@ -3,7 +3,7 @@
 ensure_updated_apt
 
 installing "NodeJS"
-apt-get install -y python-software-propreties
+apt-get install -y python-software-properties
 apt-get install -y curl
 add-apt-repository ppa:chris-lea/node.js
 apt-get update
