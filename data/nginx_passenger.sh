@@ -18,6 +18,22 @@ cat_file nginx/nginx > /etc/init.d/nginx
 chown root:root /etc/init.d/nginx
 chmod 755 /etc/init.d/nginx
 
+installing "Nginx configuration files"
+cat_file nginx/nginx.conf > /opt/nginx/conf/nginx.conf
+chown root:root /opt/nginx/conf/nginx.conf
+chmod 644 /opt/nginx/conf/nginx.conf
+
+mkdir -p /opt/nginx/conf/conf.d
+chmod 755 /opt/nginx/conf/conf.d
+
+cat_file nginx/conf.d/virtual.conf > /opt/nginx/conf/conf.d/virtual.conf
+chown root:root /opt/nginx/conf/conf.d/virtual.conf
+chmod 644 /opt/nginx/conf/conf.d/virtual.conf
+
+cat_file nginx/conf.d/ssl.conf > /opt/nginx/conf/conf.d/ssl.conf
+chown root:root /opt/nginx/conf/conf.d/ssl.conf
+chmod 644 /opt/nginx/conf/conf.d/ssl.conf
+
 # Start on bootup
 status "Making Nginx start up on boot"
 update-rc.d nginx defaults
