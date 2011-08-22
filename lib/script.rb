@@ -1,6 +1,6 @@
 class Script
   def self.home(*a)
-    Main.root 'data', *a
+    Main.root 'data', 'recipes', *a
   end
 
   def self.all
