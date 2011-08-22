@@ -22,7 +22,7 @@ if [ "$HAS_PASSENGER" == "0" ]; then
 fi
 
 installing "Nginx via Passenger"
-apt-get install -y libcurl4-openssl-dev
+apt-get install -y libcurl4-openssl-dev make build-essential
 passenger-install-nginx-module --auto --auto-download --prefix=/opt/nginx
 
 installing "Nginx service script"
