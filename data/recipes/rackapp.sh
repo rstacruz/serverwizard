@@ -59,10 +59,13 @@ status "Adding Nginx configuration ($APP_NGINX_CONF)..."
 
 cd "$APP_PATH/current"
 status "Setting up application..."
+#
 # (If you need to do things like 'bundle install', do it here.)
+#
 # gem install bundler
 # bundle install
 # rake setup
+#
 cd $DIR
 
 status "Reloading nginx configuration..."
