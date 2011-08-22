@@ -1,5 +1,5 @@
 # name: Rack app
-# description: Rack app via Git + Nginx + Passenger.
+# description: via Git + Nginx + Passenger.
 # position: 70
 # implies:
 #   - nginx_passenger
