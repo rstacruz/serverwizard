@@ -28,10 +28,4 @@ $("input.command").live 'focus click', ->
   @selectionEnd = 99999
 
 $ ->
-  check = (value) ->
-    $el = $("input[type=checkbox][value=#{value}]")
-    $el.attr 'checked', true
-    $el.trigger 'change'
-
-  check 'openssh'
-  check 'my-user'
+  $(":checkbox").removeAttr 'checked'
