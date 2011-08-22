@@ -42,7 +42,7 @@ if [ -f "$DIR/ssh/id_rsa" ]; then
   chmod 600 /home/$APP_USER/.ssh/id_rsa
 fi
 
-status "Checking out to $APP_PATH..."
+status "Cloning repository to $APP_REPO_PATH..."
 mkdir -p "$APP_REPO_PATH"
 chown -R $APP_USER:$APP_USER $APP_PATH
 sudo -u $APP_USER git clone $APP_GIT_REPO "$APP_REPO_PATH"
