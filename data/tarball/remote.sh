@@ -7,7 +7,7 @@ fi
 
 # Copy all files in the current path to the remote server.
 echo "Copying files to $1..."
-TMP_PATH="/tmp/bootstrap-sh-`date +%s`"
+TMP_PATH="/tmp/bootstrap-sh-`date +%s`$RANDOM"
 tar -zc . | ssh $* -- "mkdir -p $TMP_PATH; cd $TMP_PATH; tar -zxf -"
 
 # Execute bootstrap.sh in the new remote path, then clean up when done.
