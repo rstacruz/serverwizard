@@ -1,5 +1,7 @@
 # name: Nginx with Passenger 3
 # description: Compiles Nginx from source.
+# implies:
+#  - ruby19
 # files:
 #  - nginx/nginx
 #  - nginx/nginx.conf

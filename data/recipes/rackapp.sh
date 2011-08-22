@@ -4,7 +4,6 @@
 # implies:
 #   - nginx_passenger
 #   - git
-#   - ruby19
 # fields:
 #   APP_USER: Username (text)
 #   APP_DOMAIN: Domain name (text)
