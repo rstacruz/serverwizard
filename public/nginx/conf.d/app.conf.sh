@@ -1,9 +1,9 @@
-echo "server {"
-echo "    listen 80;"
-echo "    server_name $APP_DOMAIN;"
-echo "    passenger_enabled on;"
-echo "    rack_env production;"
-echo "    root $APP_REPO_PATH/public;"
-echo "    access_log $APP_LOGS_PATH/access.log;"
-echo "    error_log  $APP_LOGS_PATH/error.log;"
-echo "}"
+echo "server {
+    listen 80;
+    server_name $APP_DOMAIN;
+    passenger_enabled on;
+    rack_env production;
+    root $APP_REPO_PATH/public;
+    access_log $APP_LOGS_PATH/access.log;
+    error_log  $APP_LOGS_PATH/error.log;
+}"
