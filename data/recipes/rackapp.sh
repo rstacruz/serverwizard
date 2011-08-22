@@ -9,11 +9,12 @@
 #   APP_DOMAIN: Domain name (text)
 #   APP_GIT_REPO: Git repository URL (text)
 # notes:
-#  - "**Rack app:** If you need an SSH key for Git, download the script and add the files `ssh/id_rsa.pub` and `ssh/id_rsa`."
+#  - "If you need an SSH key for Git, download (*.tar.gz*) the script and add the files `ssh/id_rsa.pub` and `ssh/id_rsa`."
+#  - "If you need to do setup (like `bundle install`) for your app, download (*.tar.gz*) the script and edit `bootstrap.sh`."
 
 NGINX_ROOT="/opt/nginx"
 APP_PATH="/var/www/$APP_DOMAIN"
-APP_LOGS_PATH="$NGINX_ROOT/logs/$APP_DOMAIN"
+APP_LOGS_PATH="$APP_PATH/logs"
 APP_NGINX_CONF="$NGINX_ROOT/conf/conf.d/$APP_DOMAIN.conf"
 
 status "Creating user $APP_USER..."
@@ -40,6 +41,7 @@ mkdir -p "$APP_PATH/current"
 chown -R $APP_USER:$APP_USER $APP_PATH
 sudo -u $APP_USER git clone $APP_GIT_REPO "$APP_PATH/current"
 
+status "Setting up logs ($APP_LOGS_PATH)..."
 mkdir -p $APP_LOGS_PATH
 
 status "Adding Nginx configuration ($APP_NGINX_CONF)..."
