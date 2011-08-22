@@ -8,10 +8,10 @@
 
 ensure_updated_apt
 
-HAS_PASSENGER=`gem list | grep passenger | grep 3.0.6 | wc -l`
+HAS_PASSENGER=`gem list | grep passenger | grep 3.0. | wc -l`
 if [ "$HAS_PASSENGER" == "0" ]; then
   installing "Passenger gem"
-  gem install passenger -v 3.0.6
+  gem install passenger -v "~> 3.0.8"
 fi
 
 installing "Nginx via Passenger"
