@@ -5,6 +5,7 @@ installing "Passenger gem"
 gem install passenger -v 3.0.6
 
 installing "Nginx via Passenger"
+apt-get install -y libcurl4-openssl-dev
 passenger-install-nginx-module --auto --auto-download --prefix=/opt/nginx
 
 installing "Nginx service script"
