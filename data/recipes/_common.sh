@@ -37,15 +37,20 @@ ensure_updated_apt() {
 
 # Ensure Linux-ness
 if [ ! -f "/etc/lsb-release" ]; then
-  err "This platform is not supported."
-  die "Please try this on an Ubuntu 10.04 server instead."
+  err "Only Linux platforms are supported."
+  die "Please try this on an Ubuntu Server 10.04+ instance."
 fi
 
 # Ensure Ubuntu-ness
 source /etc/lsb-release
 if [ "$DISTRIB_ID" != "Ubuntu" ]; then
-  err "Error: This platform is not supported."
-  die "Please try this on an Ubuntu 10.04 server instead."
+  err "Error: This Linux distribution is not supported."
+  die "Please try this on an Ubuntu Server 10.04+ instance."
+fi
+
+if [ "$(echo "$DISTRIB_RELEASE < 10.04" | bc)" == "1" ]; then
+  err "Error: Your Ubuntu version is too old."
+  die "Please try this on an Ubuntu Server 10.04+ instance."
 fi
 
 # Ensure root-ness
