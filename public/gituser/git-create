@@ -1,0 +1,29 @@
+#!/usr/bin/env sh
+
+if [ $# == 0 ]; then
+    echo "Usage: $0 REPONAME"
+    echo "Creates a repository for use as a remote repo."
+    exit 65
+fi
+
+REPO=/home/git/$1.git
+
+if [ -e "$REPO" ]; then
+    echo "Error: Repo $1.git already exists."
+    echo "Use it like so:"
+    echo ""
+    echo "    git remote add origin git@HOSTNAME:$1.git"
+    echo "    git push origin master"
+    echo ""
+    exit 256
+fi
+
+command sudo -u git git init --bare $REPO && (
+  echo ""
+  echo "Created repo $1.git."
+  echo "To use it on an existing repo:"
+  echo ""
+  echo "    git remote add origin git@HOSTNAME:$1.git"
+  echo "    git push origin master"
+  echo ""
+)

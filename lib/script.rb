@@ -36,6 +36,14 @@ class Script
     meta.name
   end
 
+  def notes?
+    meta.notes?
+  end
+
+  def notes
+    Tilt.new("markdown") { meta.notes }.render  if notes?
+  end
+
   # Returns a list of recipe names that the recipe implies it needs.
   def implies
     [* meta[:implies] ]

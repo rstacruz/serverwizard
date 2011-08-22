@@ -15,9 +15,15 @@ class ScriptBundle
   end
 
   def notes
-    notes = @recipes.map { |r| r.meta[:notes] }.compact.flatten
-    notes = notes.map { |note| Tilt.new("markdown") { note }.render }
-    notes
+    @notes ||= begin
+      notes = @recipes.map { |r|
+        ("<h4>#{r}</h4>" + r.notes)  if r.notes?
+      }.compact.join("\n")
+    end
+  end
+
+  def notes?
+    ! notes.empty?
   end
 
   def tarball

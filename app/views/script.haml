@@ -14,10 +14,7 @@
     %a{:href => @sh_url} Download
     %span.mute (.sh)
 
-  - if @bundle.notes.any?
+  - if @bundle.notes?
     %section.notes
       %h3 Notes
-      %ul
-        - @bundle.notes.each do |note|
-          %li!= note
-
+      != @bundle.notes

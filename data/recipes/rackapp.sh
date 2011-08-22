@@ -9,9 +9,9 @@
 #   APP_USER: Username (text)
 #   APP_DOMAIN: Domain name (text)
 #   APP_GIT_REPO: Git repository URL (text)
-# notes:
-#  - "If you need an SSH key for Git, download (*.tar.gz*) the script and add the files `ssh/id_rsa.pub` and `ssh/id_rsa`."
-#  - "If you need to do setup (like `bundle install`) for your app, download (*.tar.gz*) the script and edit `bootstrap.sh`."
+# notes: |
+#  * If you need an SSH key for Git, download (*.tar.gz*) the script and add the files `ssh/id_rsa.pub` and `ssh/id_rsa`.
+#  * If you need to do setup (like `bundle install`) for your app, download (*.tar.gz*) the script and edit `bootstrap.sh`.
 
 NGINX_ROOT="/opt/nginx"
 APP_PATH="/var/www/$APP_DOMAIN"
