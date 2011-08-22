@@ -1,8 +1,13 @@
 # name: Nginx with Passenger 3
 # description: Compiles Nginx from source.
 
-installing "Passenger gem"
-gem install passenger -v 3.0.6
+ensure_updated_apt
+
+HAS_PASSENGER=`gem list | grep passenger | grep 3.0.6 | wc -l`
+if [ "$HAS_PASSENGER" == "0" ]; then
+  installing "Passenger gem"
+  gem install passenger -v 3.0.6
+fi
 
 installing "Nginx via Passenger"
 apt-get install -y libcurl4-openssl-dev

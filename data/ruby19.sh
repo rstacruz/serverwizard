@@ -2,6 +2,8 @@
 # position: 30
 # description: Compiled from source.
 
+ensure_updated_apt
+
 DIR="`pwd`"
 
 installing "Ruby dependencies"

@@ -1,5 +1,7 @@
 # name: NodeJS with NPM
 
+ensure_updated_apt
+
 installing "NodeJS"
 apt-get install -y python-software-propreties
 apt-get install -y curl

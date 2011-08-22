@@ -27,6 +27,14 @@ cat_file() {
   fi
 }
 
+ensure_updated_apt() {
+  if [ "$UPDATED_APT" != "1" ]; then
+    status "Updating apt cache..."
+    UPDATED_APT=1
+    apt-get update
+  fi
+}
+
 # Ensure Linux-ness
 if [ ! -f "/etc/lsb-release" ]; then
   echo "Error: This platform is not supported."

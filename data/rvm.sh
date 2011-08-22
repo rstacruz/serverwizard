@@ -1,6 +1,8 @@
 # name: Ruby Version Manager (system-wide)
 # position: 30
 
+ensure_updated_apt
+
 status "Installing Ruby dependencies"
 apt-get install -y libreadline5-dev zlib1g-dev libssl-dev libxml2-dev libxslt1-dev curl
 
