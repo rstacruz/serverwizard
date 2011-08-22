@@ -12,6 +12,7 @@ class Main
 
     @url     = script_url(params[:recipes], params[:custom])
     @tar_url = script_url(params[:recipes], params[:custom], :tarball)
+    @sh_url  = script_url(params[:recipes], params[:custom], :script_download)
 
     @command = "sudo bash < <(wget \"#{@url}\" -q -O -)"
 
@@ -23,6 +24,15 @@ class Main
     recipes = recipes.split(' ')
 
     content_type :txt
+    bundle(recipes, params).build
+  end
+
+  get '/script_download/*' do |recipes|
+    params.delete 'splat'
+    recipes = recipes.split(' ')
+
+    content_type :txt
+    attachment "#{recipes.join('+')}.sh"
     bundle(recipes, params).build
   end
 

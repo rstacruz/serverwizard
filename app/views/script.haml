@@ -2,9 +2,14 @@
   :textile
     p(strong). Done! Paste this command to your server's terminal.
 
-    p(mute). You may also save this script (right click - save as) using "this link":#{@url}.
+    p(mute). Run this on an Ubuntu 10.04 server instance, preferrably a freshly-installed one.
   %input.command{:value => @command, :autofocus => true}
-  %p
+
+  %p.actions
     %a{:href => @url} View contents
-    != "&middot;"
-    %a{:href => @tar_url} Download (.tar.gz)
+    %span.dot!= "&middot;"
+    %a{:href => @tar_url} Download
+    %span.mute (.tar.gz)
+    %span.dot!= "&middot;"
+    %a{:href => @sh_url} Download
+    %span.mute (.sh)
