@@ -1,4 +1,5 @@
-echo "#user nobody;
+cat <<END
+#user nobody;
 worker_processes 1;
 pid /var/run/nginx.pid;
 
@@ -18,4 +19,5 @@ http {
     keepalive_timeout 65;
     
     include /opt/nginx/conf/conf.d/*.conf;
-}"
+}
+END
