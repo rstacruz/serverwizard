@@ -22,16 +22,24 @@ form
 
   article
     border-top: solid 1px #eee
-    padding: 0 10px
+    padding: 0
     margin: 0
     font-size: 10pt
+
+    &.checked > label, &:hover > label
+      background: #fcfcf8
+      strong
+        color: #58a
+
+    &.checked > label
+      background: #fafaf0
 
     &:first-child
       border-top: 0
 
     label
       display: block
-      padding: 15px 10px
+      padding: 15px 20px
 
     label .desc
       font-size: 0.8em
@@ -40,10 +48,10 @@ form
       margin-left: 10px
 
   .custom
-    background: #f3f3f3
+    background: #fafaf0
     border-top: solid 1px #eee
     display: block
-    margin: 0 -10px
+    margin: 0
     padding: 10px
     overflow: hidden
     font-size: 8pt
@@ -122,7 +130,7 @@ hgroup
 
 #output
   +border-radius(4px)
-  background: white
+  background: #f5f5f5
   width: 600px
   margin: 80px auto
   padding: 20px
@@ -140,11 +148,11 @@ hgroup
       font-weight: normal
 
   p.strong
-    font-family: sans-serif
+    font-family: muli, sans-serif
     margin-bottom: 0
-    font-size: 1.3em
-    font-weight: bold
-    color: #333
+    font-size: 1.5em
+    font-weight: normal
+    color: #888
 
   input.command
     width: 100%

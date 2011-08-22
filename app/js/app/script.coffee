@@ -5,9 +5,12 @@ $("input[type=checkbox]").live 'change', ->
   checked = $(this).attr('checked')
 
   if checked
+    $p.addClass 'checked'
     $custom.show()
     $custom.find('input').removeAttr 'disabled'
+    $($custom.find('input')[0]).focus()
   else
+    $p.removeClass 'checked'
     $custom.hide()
     $custom.find('input').attr('disabled', 1)
 
