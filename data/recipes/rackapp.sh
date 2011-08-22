@@ -24,7 +24,7 @@ mkdir -p /home/$APP_USER/.ssh
 chmod 700 /home/$APP_USER/.ssh
 
 if [ -n "$SSH_PUBKEY" ]; then
-  status "Adding your pubkey to $APP_USER's SSH..."
+  status "Adding your pubkey to $APP_USER's SSH authorized keys..."
   echo $SSH_PUBKEY > /home/$APP_USER/.ssh/authorized_keys
   chmod 400 /home/$APP_USER/.ssh/authorized_keys
 fi
