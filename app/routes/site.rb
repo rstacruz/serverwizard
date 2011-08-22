@@ -20,7 +20,7 @@ class Main
   end
 
   get '/:type/*' do |type, recipes|
-    pass  unless %w(script script_download tarball).include? type
+    pass  unless %w(script script_download tarball).include?(type)
 
     params.delete 'splat'
     recipes = recipes.split(' ')

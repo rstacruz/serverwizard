@@ -6,7 +6,7 @@
   %input.command{:value => @command, :autofocus => true}
 
   %p.actions
-    %a{:href => @url} View contents
+    %a{:href => @url, :target => "_blank"} View contents
     %span.dot!= "&middot;"
     %a{:href => @tar_url} Download
     %span.mute (.tar.gz)
