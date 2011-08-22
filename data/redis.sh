@@ -1,5 +1,7 @@
 # name: Redis 2.2.12
 # description: Compiled from source.
+# files:
+#  - redis/redis
 
 DIR="`pwd`"
 

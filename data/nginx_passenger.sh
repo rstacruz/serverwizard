@@ -1,5 +1,10 @@
 # name: Nginx with Passenger 3
 # description: Compiles Nginx from source.
+# files:
+#  - nginx/nginx
+#  - nginx/nginx.conf
+#  - nginx/conf.d/virtual.conf
+#  - nginx/conf.d/ssl.conf
 
 ensure_updated_apt
 
