@@ -10,7 +10,7 @@ sudo useradd $MY_USER --home "/home/$MY_USER" --create-home
 sudo addgroup $MY_USER admin
 
 status "Note: this user has no password."
-status "Set one by typing `sudo passwd $MY_USER`"
+status "Set one by typing 'sudo passwd $MY_USER'"
 
 status "Setting up SSH keys..."
 sudo mkdir /home/$MY_USER/.ssh
