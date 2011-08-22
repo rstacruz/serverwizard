@@ -29,8 +29,8 @@ installing() {
 }
 
 cat_file() {
-  if [ -f $* ]; then
-    cat $*
+  if [ -f "$*" ]; then
+    cat "$*"
   else
     curl -s "http://HTTP_HOST/$*"
   fi
