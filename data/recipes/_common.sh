@@ -31,13 +31,13 @@ fi
 # Ensure Ubuntu-ness
 source /etc/lsb-release
 if [ "$DISTRIB_ID" != "Ubuntu" ]; then
-  err  "Error: This Linux distribution is not supported."
+  err  "This Linux distribution is not supported."
   err_ "Please try this on an Ubuntu Server 10.04+ instance."
   exit 256
 fi
 
 if [ "$(echo "$DISTRIB_RELEASE < 10.04" | bc)" == "1" ]; then
-  err  "Error: Your Ubuntu version is too old."
+  err  "Your Ubuntu version is too old."
   err_ "Please try this on an Ubuntu Server 10.04+ instance."
   exit 256
 fi
