@@ -4,6 +4,7 @@
 #  - ruby19
 # files:
 #  - nginx/nginx
+#  - nginx/nginx.conf.sh
 #  - nginx/conf.d/virtual.conf
 #  - nginx/conf.d/ssl.conf
 # notes: |
@@ -29,32 +30,11 @@ cat_file nginx/nginx > /etc/init.d/nginx
 chown root:root /etc/init.d/nginx
 chmod 755 /etc/init.d/nginx
 
-installing "Nginx configuration files"
 PASSENGER_ROOT="`gem which phusion_passenger`"
 PASSENGER_ROOT="${PASSENGER_ROOT%/lib/*}"
-(
-  echo "#user nobody;"
-  echo "worker_processes 1;"
-  echo "pid /var/run/nginx.pid;"
-  echo ""
-  echo "events {"
-  echo "    worker_connections 1024;"
-  echo "}"
-  echo ""
-  echo "http {"
-  echo "    passenger_root $PASSENGER_ROOT;"
-  echo "    passenger_ruby $(which ruby);"
-  echo "    passenger_max_pool_size 6;"
-  echo "    passenger_max_instances_per_app 0;"
-  echo "    "
-  echo "    include mime.types;"
-  echo "    default_type application/octet-stream;"
-  echo "    sendfile on;"
-  echo "    keepalive_timeout 65;"
-  echo "    "
-  echo "    include /opt/nginx/conf/conf.d/*.conf;"
-  echo "}"
-) > /opt/nginx/conf/nginx.conf
+
+installing "Nginx configuration files"
+cat_file nginx/nginx.conf.sh | source /dev/stdin > /opt/nginx/conf/nginx.conf
 chown root:root /opt/nginx/conf/nginx.conf
 chmod 644 /opt/nginx/conf/nginx.conf
 
