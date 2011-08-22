@@ -6,7 +6,7 @@
 #   SSH_PUBKEY: "Public SSH key (textarea)"
 #
 status "Creating your user $MY_USER..."
-sudo useradd $MY_USER --home "/home/$MY_USER" --create-home
+sudo useradd $MY_USER --home "/home/$MY_USER" --create-home --shell /bin/bash
 sudo addgroup $MY_USER admin
 
 status "Note: this user has no password."
