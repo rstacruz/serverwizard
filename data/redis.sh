@@ -5,6 +5,9 @@
 
 DIR="`pwd`"
 
+ensure_updated_apt
+apt-get install -y gcc make
+
 status "Downloading Redis..."
 mkdir -p /tmp/redis-src
 cd /tmp/redis-src
