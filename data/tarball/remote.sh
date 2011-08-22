@@ -4,5 +4,7 @@ if [ $# == 0 ]; then
 fi
 
 echo "Connecting to $1..."
-tar -zc . | ssh $* -- "mkdir -p /tmp/bootstrap-sh; cd /tmp/bootstrap-sh; tar -zxf -"
-ssh -t $* -- "cd /tmp/bootstrap-sh && sudo bash < bootstrap.sh"
+
+TMP_PATH="/tmp/bootstrap-sh-`date +%s`"
+tar -zc . | ssh $* -- "mkdir -p $TMP_PATH; cd $TMP_PATH; tar -zxf -"
+ssh -t $* -- "cd $TMP_PATH && sudo bash < bootstrap.sh"
