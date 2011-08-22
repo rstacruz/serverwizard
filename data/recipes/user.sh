@@ -9,8 +9,8 @@ status "Creating your user $MY_USER..."
 useradd $MY_USER --home "/home/$MY_USER" --create-home --shell /bin/bash
 addgroup $MY_USER admin
 
-status "Note: this user has no password."
-status "Set one by typing 'sudo passwd $MY_USER'"
+status  "Note: this user has no password."
+status_ "Set one by typing 'sudo passwd $MY_USER'"
 
 status "Setting up SSH keys..."
 mkdir /home/$MY_USER/.ssh
