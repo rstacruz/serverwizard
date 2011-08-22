@@ -19,30 +19,27 @@ class Main
     haml :script
   end
 
-  get '/script/*' do |recipes|
+  get '/:type/*' do |type, recipes|
+    pass  unless %w(script script_download tarball).include? type
+
     params.delete 'splat'
     recipes = recipes.split(' ')
 
-    content_type :txt
-    bundle(recipes, params).build
-  end
+    case type
+    when "script"
+      content_type :txt
+      bundle(recipes, params).build
 
-  get '/script_download/*' do |recipes|
-    params.delete 'splat'
-    recipes = recipes.split(' ')
+    when "script_download"
+      content_type :txt
+      attachment "#{recipes.join('+')}.sh"
+      bundle(recipes, params).build
 
-    content_type :txt
-    attachment "#{recipes.join('+')}.sh"
-    bundle(recipes, params).build
-  end
-
-  get '/tarball/*' do |recipes|
-    params.delete 'splat'
-    recipes = recipes.split(' ')
-
-    content_type "application/x-tar"
-    attachment "#{recipes.join('+')}.tar.gz"
-    bundle(recipes, params).tarball
+    when "tarball"
+      content_type "application/x-tar"
+      attachment "#{recipes.join('+')}.tar.gz"
+      bundle(recipes, params).tarball
+    end
   end
 
   helpers do
