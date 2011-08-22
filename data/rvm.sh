@@ -2,7 +2,7 @@
 # position: 30
 
 status "Installing Ruby dependencies"
-sudo apt-get install -y libreadline5-dev zlib1g-dev libssl-dev libxml2-dev libxslt1-dev
+apt-get install -y libreadline5-dev zlib1g-dev libssl-dev libxml2-dev libxslt1-dev curl
 
 status "Installing system-wide RVM"
 bash < <(curl -s https://rvm.beginrescueend.com/install/rvm)

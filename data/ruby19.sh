@@ -2,10 +2,10 @@
 # position: 30
 # description: Compiled from source.
 
-PWD="`pwd`"
+DIR="`pwd`"
 
 installing "Ruby dependencies"
-sudo apt-get -y install libc6-dev libssl-dev libmysql++-dev libsqlite3-dev make build-essential libssl-dev libreadline5-dev zlib1g-dev unzip wget
+apt-get -y install libc6-dev libssl-dev libmysql++-dev libsqlite3-dev make build-essential libssl-dev libreadline5-dev zlib1g-dev unzip wget
 
 status "Downloading Ruby..."
 mkdir -p /tmp/ruby-src
@@ -16,7 +16,7 @@ tar -xzvf ruby-1.9.2-p180.tar.gz
 installing "Ruby"
 cd ruby-1.9.2-p180
 ./configure --prefix=/usr/local
-sudo make && sudo make install
+make && make install
 
-cd $PWD
+cd $DIR
 rm -rf /tmp/ruby-src

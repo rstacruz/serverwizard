@@ -2,7 +2,7 @@
 # description: Compiles Nginx from source.
 
 installing "Passenger gem"
-sudo gem install passenger -v 3.0.6
+gem install passenger -v 3.0.6
 
 installing "Nginx via Passenger"
 passenger-install-nginx-module --auto --auto-download --prefix=/opt/nginx
@@ -14,6 +14,6 @@ chmod 755 /etc/init.d/nginx
 
 # Start on bootup
 status "Making Nginx start up on boot"
-sudo update-rc.d nginx defaults
+update-rc.d nginx defaults
 
 

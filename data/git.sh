@@ -2,4 +2,4 @@
 # position: 40
 
 installing "Git client"
-sudo apt-get install git-core
+apt-get install -y git-core

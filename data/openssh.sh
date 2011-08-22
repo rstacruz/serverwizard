@@ -3,4 +3,4 @@
 # description: Allows SSH access.
 
 installing "OpenSSH server"
-sudo apt-get install -y openssh-server
+apt-get install -y openssh-server
