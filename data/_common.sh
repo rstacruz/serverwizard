@@ -32,7 +32,7 @@ cat_file() {
   if [ -f "$*" ]; then
     cat "$*"
   else
-    curl -s "http://HTTP_HOST/$*"
+    wget "http://HTTP_HOST/$*" -q -O -
   fi
 }
 

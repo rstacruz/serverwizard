@@ -13,7 +13,7 @@ class Main
     url += kv(params[:custom])
 
     @url = url
-    @command = "sudo bash < <(wget \"#{url}\" -O -)"
+    @command = "sudo bash < <(wget \"#{url}\" -q -O -)"
     @contents = build_script(params[:recipes], params[:custom])
 
     haml :script
