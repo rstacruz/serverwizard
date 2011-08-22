@@ -2,21 +2,21 @@
 
 DIR="`pwd`"
 
+# Helpers
 status() {
-    echo -e "\033[0;32m*** $*\033[0;m"
+  echo -e "\033[0;32m*** $*\033[0;m"
 }
-
+status_() {
+  echo -e "\033[0;32m    $*\033[0;m"
+}
 err() {
-    echo -e "\033[0;31m* Error: $*\033[0;m"
+  echo -e "\033[0;31m* Error: $*\033[0;m"
 }
-
 die() {
-  err "$*"
-  exit 256
+  err "$*"; exit 256
 }
-
 installing() {
-    echo -e "\033[0;32m*** Installing: $*...\033[0;m"
+  echo -e "\033[0;32m*** Installing: $*...\033[0;m"
 }
 
 cat_file() {

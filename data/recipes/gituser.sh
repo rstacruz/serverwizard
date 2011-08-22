@@ -29,5 +29,5 @@ cat_file gituser/git-create > $GIT_CREATE
 chmod 755 /usr/local/bin/git-create
 
 status "Git user created."
-status "To create a repo:  git create myreponame"
-status "To use that repo:  git add git@SERVERNAME:myreponame.git"
+status_ "To create a repo: git create myreponame"
+status_ "To use that repo: git add git@SERVERNAME:myreponame.git"
