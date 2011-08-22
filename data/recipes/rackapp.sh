@@ -14,6 +14,7 @@
 
 NGINX_ROOT="/opt/nginx"
 APP_PATH="/var/www/$APP_DOMAIN"
+APP_REPO_PATH="$APP_PATH/current"
 APP_LOGS_PATH="$APP_PATH/logs"
 APP_NGINX_CONF="$NGINX_ROOT/conf/conf.d/$APP_DOMAIN.conf"
 
@@ -42,9 +43,9 @@ if [ -f "$DIR/ssh/id_rsa" ]; then
 fi
 
 status "Checking out to $APP_PATH..."
-mkdir -p "$APP_PATH/current"
+mkdir -p "$APP_REPO_PATH"
 chown -R $APP_USER:$APP_USER $APP_PATH
-sudo -u $APP_USER git clone $APP_GIT_REPO "$APP_PATH/current"
+sudo -u $APP_USER git clone $APP_GIT_REPO "$APP_REPO_PATH"
 
 status "Setting up logs ($APP_LOGS_PATH)..."
 mkdir -p $APP_LOGS_PATH
@@ -56,7 +57,7 @@ status "Adding Nginx configuration ($APP_NGINX_CONF)..."
   echo "    server_name $APP_DOMAIN;"
   echo "    passenger_enabled on;"
   echo "    rack_env production;"
-  echo "    root $APP_PATH/current/public;"
+  echo "    root $APP_REPO_PATH/public;"
   echo "    access_log $APP_LOGS_PATH/access.log;"
   echo "    error_log  $APP_LOGS_PATH/error.log;"
   echo "}"
