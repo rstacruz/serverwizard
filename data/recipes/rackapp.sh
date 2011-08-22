@@ -55,7 +55,7 @@ mkdir -p $APP_LOGS_PATH
 status "Adding Nginx configuration ($APP_NGINX_CONF)..."
 source_file nginx/conf.d/app.conf.sh > $APP_NGINX_CONF
 
-cd "$APP_PATH/current"
+cd "$APP_REPO_PATH"
 status "Setting up application..."
 #
 # (If you need to do things like 'bundle install', do it here.)
