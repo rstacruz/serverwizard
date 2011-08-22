@@ -1,4 +1,6 @@
 # name: NodeJS with NPM
+# notes: |
+#  - You may need to type *"yes"* somewhere during the installation of NPM.
 
 ensure_updated_apt
 
