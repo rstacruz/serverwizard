@@ -75,10 +75,10 @@ class ScriptBundle
       dirs = files.map { |f| File.dirname(f) }.uniq.sort
       dirs = dirs.map { |d| "#{d}/" }
 
-      files = self.files.map { |f| "http://HTTP_HOST/#{f} -O #{f}" }
+      files = self.files.map { |f| "wget http://HTTP_HOST/#{f} -O #{f}" }
 
       mkdir = "mkdir -p #{dirs.join(' ')}"
-      wget  = "wget #{files.join(' ')}"
+      wget  = "#{files.join('; ')}"
 
       cmd = "#{mkdir} && #{wget}"
 
