@@ -5,4 +5,6 @@
     p(mute). You may also save this script (right click - save as) using "this link":#{@url}.
   %input.command{:value => @command, :autofocus => true}
   %p
-    %a{:href => @url} (view contents?)
+    %a{:href => @url} View contents
+    != "&middot;"
+    %a{:href => @tar_url} Download (.tar.gz)

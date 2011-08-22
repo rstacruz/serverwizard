@@ -10,27 +10,40 @@ class Main
     redirect '/'  unless params[:recipes].to_s.size > 0
     redirect '/'  if params[:custom] && params[:custom].any? && params[:custom].any? { |k, v| v.to_s.empty? }
 
-    url  = "http://#{request.env['HTTP_HOST']}/script/" + params[:recipes].join('+')
-    url += kv(params[:custom])
+    @url     = script_url(params[:recipes], params[:custom])
+    @tar_url = script_url(params[:recipes], params[:custom], :tarball)
 
-    @url = url
-    @command = "sudo bash < <(wget \"#{url}\" -q -O -)"
+    @command = "sudo bash < <(wget \"#{@url}\" -q -O -)"
 
     haml :script
   end
 
   get '/script/*' do |recipes|
     params.delete 'splat'
-    content_type :txt
-
     recipes = recipes.split(' ')
 
-    build_script recipes, params
+    content_type :txt
+    bundle(recipes, params).build
+  end
+
+  get '/tarball/*' do |recipes|
+    params.delete 'splat'
+    recipes = recipes.split(' ')
+
+    content_type "application/x-tar"
+    attachment "#{recipes.join('+')}.tar.gz"
+    bundle(recipes, params).tarball
   end
 
   helpers do
-    def build_script(recipes, custom)
-      ScriptBundle.build(recipes, custom, request.env['HTTP_HOST'])
+    def script_url(recipes, custom, type='script')
+      url  = "http://#{request.env['HTTP_HOST']}/#{type}/" + recipes.join('+')
+      url += kv(custom)
+      url
+    end
+
+    def bundle(recipes, custom)
+      ScriptBundle.new recipes, custom, request.env['HTTP_HOST']
     end
 
     def kv(hash)

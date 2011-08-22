@@ -1,0 +1,11 @@
+Bootstrap script
+================
+
+To bootstrap a remote server from your computer, use:
+
+    bash remote.sh username@server-name
+
+Or alternatively, copy everything to the server and run:
+
+    bash bootstrap.sh
+

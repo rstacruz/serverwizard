@@ -11,24 +11,52 @@ class ScriptBundle
     @host    = host
   end
 
-  def build
+  def tarball
+    path   = "/tmp/tarball-#{Time.now.to_i}-#{rand(65535)}"
+    prefix = "#{path}/bootstrap"
+
+    # Copy main tarball files
+    FileUtils.rm_rf path
+    FileUtils.mkdir_p path
+    FileUtils.cp_r "#{Main.root}/data/tarball", prefix
+
+    # Add the main bootstrap file
+    File.open("#{prefix}/bootstrap.sh", 'w') { |f| f.write build(:no_files => true) }
+
+    # Add files
+    files.each { |f|
+      FileUtils.mkdir_p File.dirname("#{prefix}/#{f}")
+      FileUtils.cp "#{Main.root}/public/#{f}", "#{prefix}/#{f}"
+    }
+
+    # Tar it
+    tarball = `cd "#{path}" && tar -zc bootstrap/`
+
+    FileUtils.rm_rf path
+
+    tarball
+  end
+
+  def build(options={})
     [ header_src,
-      files_src,
+      (files_src  unless options[:no_files]),
       common_src,
       custom_variables_src,
       contents_src,
       done_src
-    ].join.gsub('HTTP_HOST', @host)
+    ].compact.join.gsub('HTTP_HOST', @host)
+  end
+
+  def files
+    @recipes.map { |r| r.meta.files }.compact.flatten
   end
 
   def files_src
-    files = @recipes.map { |r| r.meta.files }.compact.flatten
-
     if files.any?
       dirs = files.map { |f| File.dirname(f) }.uniq.sort
       dirs = dirs.map { |d| "#{d}/" }
 
-      files = files.map { |f| "http://HTTP_HOST/#{f} -O #{f}" }
+      files = self.files.map { |f| "http://HTTP_HOST/#{f} -O #{f}" }
 
       mkdir = "mkdir -p #{dirs.join(' ')}"
       wget  = "wget #{files.join(' ')}"
