@@ -25,21 +25,22 @@ class Main
     params.delete 'splat'
     params.delete 'type'
     recipes = recipes.split(' ')
+    script  = bundle(recipes, params)
 
     case type
     when "script"
       content_type :txt
-      bundle(recipes, params).build
+      script.build
 
     when "script_download"
       content_type :txt
       attachment "#{recipes.join('+')}.sh"
-      bundle(recipes, params).build
+      script.build
 
     when "tarball"
       content_type "application/x-tar"
       attachment "#{recipes.join('+')}.tar.gz"
-      bundle(recipes, params).tarball
+      script.tarball
     end
   end
 
