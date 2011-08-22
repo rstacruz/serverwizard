@@ -1,5 +1,6 @@
-# name: Ruby Version Manager (system-wide)
-# position: 30
+# name: Ruby Version Manager
+# description: System-wide installation.
+# position: 35
 
 ensure_updated_apt
 
