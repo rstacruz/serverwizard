@@ -23,6 +23,7 @@ class Main
     pass  unless %w(script script_download tarball).include?(type)
 
     params.delete 'splat'
+    params.delete 'type'
     recipes = recipes.split(' ')
 
     case type
