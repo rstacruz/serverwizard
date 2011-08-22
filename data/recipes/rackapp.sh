@@ -29,11 +29,15 @@ if [ -n "$SSH_PUBKEY" ]; then
 fi
 
 if [ -f "$DIR/ssh/id_rsa.pub" ]; then
-  status "Adding keys to $APP_USER..."
+  status "Adding public key to $APP_USER..."
   cat "$DIR/ssh/id_rsa.pub" > /home/$APP_USER/.ssh/id_rsa.pub
+  chmod 644 /home/$APP_USER/.ssh/id_rsa.pub
+fi
+
+if [ -f "$DIR/ssh/id_rsa" ]; then
+  status "Adding private key to $APP_USER..."
   cat "$DIR/ssh/id_rsa" > /home/$APP_USER/.ssh/id_rsa
   chmod 600 /home/$APP_USER/.ssh/id_rsa
-  chmod 644 /home/$APP_USER/.ssh/id_rsa.pub
 fi
 
 status "Checking out to $APP_PATH..."
