@@ -15,7 +15,6 @@ class Main
 
     @url = url
     @command = "sudo bash < <(wget \"#{url}\" -q -O -)"
-    @contents = build_script(params[:recipes], params[:custom])
 
     haml :script
   end
