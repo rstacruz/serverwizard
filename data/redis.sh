@@ -19,7 +19,7 @@ mkdir -p /etc/redis
 cp redis.conf /etc/redis/redis.conf
 chmod 644 /etc/redis/redis.conf
 
-cat_file redis/redis /etc/init.d/redis
+cat_file redis/redis > /etc/init.d/redis
 chmod 755 /etc/init.d/redis
 
 status "Making Redis start on system startup"
