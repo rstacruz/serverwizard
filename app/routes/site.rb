@@ -15,6 +15,7 @@ class Main
     @sh_url  = script_url(params[:recipes], params[:custom], :script_download)
 
     @command = "sudo bash < <(wget \"#{@url}\" -q -O -)"
+    @bundle = bundle(params[:recipes], params[:custom])
 
     haml :script
   end
@@ -25,22 +26,22 @@ class Main
     params.delete 'splat'
     params.delete 'type'
     recipes = recipes.split(' ')
-    script  = bundle(recipes, params)
+    @script = bundle(recipes, params)
 
     case type
     when "script"
       content_type :txt
-      script.build
+      @script.build
 
     when "script_download"
       content_type :txt
       attachment "#{recipes.join('+')}.sh"
-      script.build
+      @script.build
 
     when "tarball"
       content_type "application/x-tar"
       attachment "#{recipes.join('+')}.tar.gz"
-      script.tarball
+      @script.tarball
     end
   end
 

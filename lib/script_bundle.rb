@@ -5,10 +5,19 @@ class ScriptBundle
     item.build
   end
 
+  attr_reader :recipes
+  attr_reader :host
+
   def initialize(recipe_names, custom={}, host='serverwizard.org')
     @custom  = custom
     @recipes = recipe_names.map { |r| Script[r] }.compact
     @host    = host
+  end
+
+  def notes
+    notes = @recipes.map { |r| r.meta[:notes] }.compact.flatten
+    notes = notes.map { |note| Tilt.new("markdown") { note }.render }
+    notes
   end
 
   def tarball

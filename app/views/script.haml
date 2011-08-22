@@ -13,3 +13,11 @@
     %span.dot!= "&middot;"
     %a{:href => @sh_url} Download
     %span.mute (.sh)
+
+  - if @bundle.notes.any?
+    %section.notes
+      %h3 Notes
+      %ul
+        - @bundle.notes.each do |note|
+          %li!= note
+

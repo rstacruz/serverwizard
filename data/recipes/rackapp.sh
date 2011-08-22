@@ -1,0 +1,67 @@
+# name: Rack app
+# description: Clones and runs a Rack app via Git.
+# position: 70
+# implies:
+#   - nginx_passenger
+#   - git
+# fields:
+#   APP_USER: Username (text)
+#   APP_DOMAIN: Domain name (text)
+#   APP_GIT_REPO: Git repository URL (text)
+# notes:
+#  - "**Rack app:** If you need an SSH key for Git, download the script and add the files `ssh/id_rsa.pub` and `ssh/id_rsa`."
+
+NGINX_ROOT="/opt/nginx"
+APP_PATH="/var/www/$APP_DOMAIN"
+APP_LOGS_PATH="$NGINX_ROOT/logs/$APP_DOMAIN"
+APP_NGINX_CONF="$NGINX_ROOT/conf/conf.d/$APP_DOMAIN.conf"
+
+status "Creating user $APP_USER..."
+useradd $APP_USER --home "/home/$APP_USER" --create-home --shell /bin/bash
+
+mkdir -p /home/$APP_USER/.ssh
+chmod 700 /home/$APP_USER/.ssh
+
+if [ -n "$SSH_PUBKEY" ]; then
+  status "Adding your pubkey to $APP_USER's SSH..."
+  echo $SSH_PUBKEY > /home/$APP_USER/.ssh/authorized_keys
+fi
+
+if [ -f "$DIR/ssh/id_rsa.pub" ]; then
+  status "Adding keys to $APP_USER..."
+  cat "$DIR/ssh/id_rsa.pub" > /home/$APP_USER/.ssh/id_rsa.pub
+  cat "$DIR/ssh/id_rsa" > /home/$APP_USER/.ssh/id_rsa
+  chmod 600 /home/$APP_USER/.ssh/id_rsa
+  chmod 644 /home/$APP_USER/.ssh/id_rsa.pub
+fi
+
+status "Checking out to $APP_PATH..."
+mkdir -p "$APP_PATH/current"
+chown -R $APP_USER:$APP_USER $APP_PATH
+sudo -u $APP_USER git clone $APP_GIT_REPO "$APP_PATH/current"
+
+mkdir -p $APP_LOGS_PATH
+
+status "Adding Nginx configuration ($APP_NGINX_CONF)..."
+(
+  echo "server {"
+  echo "    listen 80;"
+  echo "    server_name $APP_DOMAIN;"
+  echo "    passenger_enabled on;"
+  echo "    rack_env production;"
+  echo "    root $APP_PATH/current/public;"
+  echo "    access_log $APP_LOGS_PATH/access.log;"
+  echo "    error_log  $APP_LOGS_PATH/error.log;"
+  echo "}"
+) > $APP_NGINX_CONF
+
+cd "$APP_PATH/current"
+status "Setting up application..."
+# (If you need to do things like 'bundle install', do it here.)
+# gem install bundler
+# bundle install
+# rake setup
+cd $DIR
+
+status "Reloading nginx configuration..."
+"$NGINX_ROOT/sbin/nginx" -s reload

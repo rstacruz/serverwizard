@@ -7,6 +7,9 @@ class Script
     items = Dir["#{home}/*.sh"].map { |f| self.new f  unless File.basename(f)[0] == '_' }
     items = items.compact
 
+    # Make advanced recipes only available for development mode
+    items = items.select { |item| ! item.meta[:advanced] }  unless ENV['RACK_ENV'] == 'development'
+
     items.sort_by { |item| item.sort_position }
   end
 
@@ -31,6 +34,11 @@ class Script
 
   def name
     meta.name
+  end
+
+  # Returns a list of recipe names that the recipe implies it needs.
+  def implies
+    [* meta[:implies] ]
   end
 
   def sort_position

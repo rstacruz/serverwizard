@@ -12,7 +12,7 @@
   - Script.all.each do |script|
     %article
       %label
-        %input{:type => 'checkbox', :name => 'recipes[]', :value => script.id}
+        %input{:type => 'checkbox', :name => 'recipes[]', :value => script.id, :'data-implies' => script.implies.join(' ') }
         %strong= script.name
         %span.desc= script.description
 

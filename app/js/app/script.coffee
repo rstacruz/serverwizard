@@ -9,6 +9,14 @@ $("input[type=checkbox]").live 'change', ->
     $custom.show()
     $custom.find('input').removeAttr 'disabled'
     $($custom.find('input')[0]).focus()
+
+    # Implies?
+    list = ("" + $(this).attr('data-implies')).split(' ')
+    for i of list
+      $checkbox = $("input:checkbox[value=#{list[i]}]")
+      $checkbox.attr 'checked', 1
+      $checkbox.trigger 'change'
+
   else
     $p.removeClass 'checked'
     $custom.hide()
