@@ -9,7 +9,6 @@ apt-get install -y build-essential bison openssl libreadline6 libreadline6-dev c
 status "Installing system-wide RVM"
 bash < <(curl -s https://rvm.beginrescueend.com/install/rvm)
 
-# Add yourself to RVM
 status "Installing Ruby via RVM"
 bash -l -c "rvm install ruby-1.9.2-p180"
 
