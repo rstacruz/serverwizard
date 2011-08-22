@@ -8,7 +8,10 @@
 #  - nginx/conf.d/virtual.conf
 #  - nginx/conf.d/ssl.conf
 # notes: |
-#    - Place each host as a config file in `/opt/nginx/conf/conf.d/`. See *virtual.conf* for an example.
+#    - Place each host as a config file in `/opt/nginx/conf/conf.d/`.  
+#      See *virtual.conf* for an example.
+#    - Control the service using:  
+#      `sudo service nginx {start|stop|reload|restart}`.
 
 ensure_updated_apt
 
