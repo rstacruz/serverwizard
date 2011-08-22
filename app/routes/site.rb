@@ -1,4 +1,5 @@
 require 'script'
+require 'script_bundle'
 
 class Main
   get '/' do
@@ -30,9 +31,7 @@ class Main
 
   helpers do
     def build_script(recipes, custom)
-      output = Script.build(recipes, custom)
-      output.gsub! "HTTP_HOST", request.env['HTTP_HOST']
-      output
+      ScriptBundle.build(recipes, custom, request.env['HTTP_HOST'])
     end
 
     def kv(hash)

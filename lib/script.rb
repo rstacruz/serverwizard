@@ -17,36 +17,6 @@ class Script
     item if item.exists?
   end
 
-  # Builds a script
-  def self.build(recipe_names, custom={})
-    recipes = recipe_names.map { |r| Script[r] }.compact
-
-    output = ""
-    output += Script['_common'].contents
-    output += "\n\n"
-
-    if custom && custom.any?
-      output += heading("Custom variables")
-
-      custom.each { |k, v|
-        output += "export #{k}=#{v.inspect}\n"
-      }
-
-      output += "\n"
-    end
-
-    contents = recipes.map { |r|
-      heading(r.name) + r.contents
-    }
-
-    output += contents.join("\n\n")
-
-    output += "\n\n" + heading("Done")
-    output += Script['_done'].contents
-    output
-
-  end
-
   attr_reader :id
   attr_reader :file
 
@@ -113,9 +83,4 @@ class Script
   end
 
   alias to_s name
-
-private
-  def self.heading(str)
-    "# == #{str} " + ("=" * (75-str.size)) + "\n\n"
-  end
 end

@@ -14,7 +14,17 @@ class AppTest < UnitTest
 
   test "fields" do
     field = Script['mysql'].fields.first
-    field.name.should == "MySQL root password"
+    field.name.should == "Root password"
     field.id.should   == "MYSQL_ROOT_PASSWORD"
+  end
+
+  test "bundle" do
+    output = ScriptBundle.build(%w(mysql redis nginx_passenger), {}, 'hoopla')
+
+    output.should.include "http://hoopla"
+    output.should.include "cat_file"             # from common
+    output.should.include "MYSQL_ROOT_PASSWORD"  # from mysql
+    output.should.include "redis.conf"           # from redis
+    output.should.include "Done!"
   end
 end
