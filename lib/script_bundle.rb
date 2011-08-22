@@ -25,13 +25,20 @@ class ScriptBundle
     files = @recipes.map { |r| r.meta.files }.compact.flatten
 
     if files.any?
-      dirs = files.map { |f| File.dirname(f) }.uniq
+      dirs = files.map { |f| File.dirname(f) }.uniq.sort
+      dirs = dirs.map { |d| "#{d}/" }
+
+      files = files.map { |f| "http://HTTP_HOST/#{f} -O #{f}" }
+
+      mkdir = "mkdir -p #{dirs.join(' ')}"
+      wget  = "wget #{files.join(' ')}"
+
+      cmd = "#{mkdir} && #{wget}"
+
       [ "# Note: this script relies on a few files from the http://HTTP_HOST server.",
         "# If you don't like this, download the files like so:",
         "#",
-        dirs.map  { |d| "#     mkdir -p #{d}/" },
-        files.map { |f| "#     wget http://HTTP_HOST/#{f} -O #{f}" },
-        "\n"
+        "#     #{cmd}\n\n"
       ].flatten.join("\n")
 
     else

@@ -19,9 +19,9 @@ class AppTest < UnitTest
   end
 
   test "bundle" do
-    output = ScriptBundle.build(%w(mysql redis nginx_passenger), {}, 'hoopla')
+    output = ScriptBundle.build(%w(mysql redis nginx_passenger), {}, 'serverwizard.dev')
 
-    output.should.include "http://hoopla"
+    output.should.include "http://serverwizard.dev"
     output.should.include "cat_file"             # from common
     output.should.include "MYSQL_ROOT_PASSWORD"  # from mysql
     output.should.include "redis.conf"           # from redis
