@@ -1,4 +1,4 @@
-class Script
+class Recipe
   def self.home(*a)
     Main.root 'data', 'recipes', *a
   end
@@ -50,7 +50,7 @@ class Script
   def dependencies
     @dependencies ||= begin
       needs = [*meta[:needs]]
-      deps  = needs.map { |name| Script[name] }
+      deps  = needs.map { |name| Recipe[name] }
       deps += deps.map { |d| d.dependencies }.flatten
       deps
     end

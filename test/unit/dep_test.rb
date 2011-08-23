@@ -2,22 +2,22 @@ require_relative '../test_helper'
 
 class DepTest < UnitTest
   test "dependency" do
-    Script['git'].dependencies.first.id.should == '_aptupdate'
+    Recipe['git'].dependencies.first.id.should == '_aptupdate'
   end
 
   test "dependency in bundle" do
-    b = ScriptBundle.new %w(git hostname)
+    b = Bundle.new %w(git hostname)
     contents = b.build
 
     contents.should.include "Updating apt cache"
   end
 
   test "include" do
-    b = ScriptBundle.new %w(git hostname)
-    b.recipes.should.include Script['_aptupdate']
+    b = Bundle.new %w(git hostname)
+    b.recipes.should.include Recipe['_aptupdate']
   end
 
   test "uniq" do
-    [Script['git'], Script['git']].uniq.size.should == 1
+    [Recipe['git'], Recipe['git']].uniq.size.should == 1
   end
 end

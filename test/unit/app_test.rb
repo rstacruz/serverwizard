@@ -6,21 +6,21 @@ class AppTest < UnitTest
   end
   
   test "script" do
-    Script['mysql'].meta.name.should == "MySQL"
+    Recipe['mysql'].meta.name.should == "MySQL"
   end
 
   test "contents" do
-    Script['mysql'].contents.should.include "start on boot"
+    Recipe['mysql'].contents.should.include "start on boot"
   end
 
   test "fields" do
-    field = Script['mysql'].fields.first
+    field = Recipe['mysql'].fields.first
     field.name.should == "Root password"
     field.id.should   == "MYSQL_ROOT_PASSWORD"
   end
 
   test "bundle" do
-    output = ScriptBundle.build(%w(mysql redis nginx_passenger), {}, 'serverwizard.dev')
+    output = Bundle.build(%w(mysql redis nginx_passenger), {}, 'serverwizard.dev')
 
     output.should.include "http://serverwizard.dev"
     output.should.include "cat_file"             # from common
@@ -30,13 +30,13 @@ class AppTest < UnitTest
   end
 
   test "files" do
-    s = ScriptBundle.new(%w(mysql nginx_passenger redis))
+    s = Bundle.new(%w(mysql nginx_passenger redis))
     s.files.should.include "redis/redis"
     s.files.should.include "nginx/nginx.conf.sh"
   end
 
   test "tarball" do
-    s = ScriptBundle.new(%w(mysql nginx_passenger redis))
+    s = Bundle.new(%w(mysql nginx_passenger redis))
     t = Tempfile.new ['', 'x.tar.gz']
     t.write s.tarball
     t.close

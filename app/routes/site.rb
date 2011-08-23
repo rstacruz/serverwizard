@@ -1,5 +1,5 @@
-require 'script'
-require 'script_bundle'
+require 'recipe'
+require 'bundle'
 
 class Main
   get '/' do
@@ -57,7 +57,7 @@ class Main
     end
 
     def bundle(recipes, custom)
-      ScriptBundle.new recipes, custom, request.env['HTTP_HOST']
+      Bundle.new recipes, custom, request.env['HTTP_HOST']
     end
 
     def kv(hash)

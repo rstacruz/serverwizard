@@ -1,4 +1,4 @@
-class ScriptBundle
+class Bundle
   # Builds a script
   def self.build(recipe_names, custom={}, host='serverwizard.org')
     item = new recipe_names, custom, host
@@ -10,7 +10,7 @@ class ScriptBundle
 
   def initialize(recipe_names, custom={}, host='serverwizard.org')
     @custom  = custom
-    @recipes = recipe_names.map { |r| Script[r] }.compact
+    @recipes = recipe_names.map { |r| Recipe[r] }.compact
     @host    = host
 
     # Add dependencies
@@ -101,17 +101,17 @@ class ScriptBundle
   end
 
   def header_src
-    Script['_header'].contents + "\n\n"
+    Recipe['_header'].contents + "\n\n"
   end
 
   def common_src
-    Script['_common'].contents + "\n\n"
+    Recipe['_common'].contents + "\n\n"
   end
 
   def done_src
     [ "\n\n",
       heading("Done"),
-      Script['_done'].contents
+      Recipe['_done'].contents
     ].join
   end
 

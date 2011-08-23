@@ -9,7 +9,7 @@
     We'll come up with a script for you.
 
 %form{:action => '/script', :method => 'post'}
-  - Script.all.each do |script|
+  - Recipe.all.each do |script|
     %article
       %label
         %input{:type => 'checkbox', :name => 'recipes[]', :value => script.id, :'data-implies' => script.implies.join(' ') }
