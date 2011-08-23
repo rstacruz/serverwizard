@@ -2,7 +2,8 @@
 # description: Changes the hostname of the server.
 # position: 10
 # fields:
-#   HOST_NAME: Host name (text)
+#   HOST_NAME:
+#     name: Host name
 
 status "Changing hostname to '$HOST_NAME'..."
 echo "127.0.1.1 $HOST_NAME" >> /etc/hosts

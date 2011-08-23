@@ -7,9 +7,17 @@
 # files:
 #   - nginx/conf.d/app.conf.sh
 # fields:
-#   APP_USER: Username (text)
-#   APP_DOMAIN: Domain name (text)
-#   APP_GIT_REPO: Git repository URL (text)
+#   APP_USER:
+#    name: Username
+#    default: myapp
+#    description: This is the name of the user that will own the application files. It will be created if it doesn't exist.
+#   APP_DOMAIN:
+#    name: Domain name
+#    default: myapp.com
+#    description: The domain name that the application will be served under.
+#   APP_GIT_REPO:
+#    name: Git repository URL
+#    default: http://github.com/rstacruz/serverwizard.git
 # notes: |
 #  * If you need an SSH key for Git, download (*.tar.gz*) the script and add the files `ssh/id_rsa.pub` and `ssh/id_rsa`.
 #  * If you need to do setup (like `bundle install`) for your app, download (*.tar.gz*) the script and edit `bootstrap.sh`.

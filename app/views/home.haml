@@ -20,7 +20,11 @@
         %p.custom.hide
           %label
             = "#{field.name}:"
-          %input{:disabled => true, :type => 'text', :name => "custom[#{field.id}]", :value => field.default}
+          %input{:disabled => true, :type => 'text', :name => "custom[#{field.id}]", :value => field[:default], :placeholder => field[:placeholder]}
+          - if field.description?
+            %span.desc
+              %big= field.name
+              = field.description
 
   %p.submit
     %button{:type => "submit"} Generate

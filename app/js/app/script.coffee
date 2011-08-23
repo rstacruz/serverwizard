@@ -34,6 +34,12 @@ $("form").live 'submit', (e) ->
       e.stopPropagation()
       e.preventDefault()
 
+$(".custom input").live 'focus', ->
+  $(this).closest('.custom').addClass 'focus'
+
+$(".custom input").live 'blur', ->
+  $(this).closest('.custom').removeClass 'focus'
+
 $("input.command").live 'focus click', ->
   @selectionStart = 0
   @selectionEnd = 99999

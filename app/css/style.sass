@@ -12,11 +12,11 @@ body
 
 form
   margin: 40px auto
-  overflow: hidden
   width: 400px
-  padding: 0
+  padding-bottom: 1px
   background: white
 
+  +clearfix
   +border-radius(4px)
   +box-shadow(1px 1px 10px rgba(black, 0.1))
 
@@ -56,8 +56,9 @@ form
     display: block
     margin: 0
     padding: 10px
-    overflow: hidden
+    +clearfix
     font-size: 8pt
+    position: relative
 
     label
       padding: 0
@@ -76,15 +77,47 @@ form
     &.hide
       display: none
 
+    span.desc
+      +border-right-radius(4px)
+      +box-shadow(inset 3px 0 3px rgba(black, 0.1))
+      display: none
+
+      font-family: lato, sans-serif
+      font-style: italic
+      font-size: 1.1em
+
+      position: absolute
+      left: 100%
+      top: 0
+      width: 300px
+      background: rgba(#888, 0.8)
+      color: #eee
+      text-shadow: 1px 1px 0 rgba(black, 0.1)
+      padding: 10px
+
+      big
+        font-weight: bold
+        font-style: normal
+        letter-spacing: 0
+        font-family: lato, sans-serif
+        font-size: 1.1em
+        display: block
+        color: #fff
+
+    &.focus span.desc
+      display: block
+
+
   p.submit
     text-align: center
     padding: 10px
+    margin: 0 1px
     +gradient(#ddd, #ddd * 0.95)
-    margin: 1px
     +border-bottom-radius(4px)
 
     button
-      background: #888
+      background: #7bd
+      font-size: 0.9em
       +box-shadow(1px 1px 0 rgba(white, 0.1))
       border: 0
       padding: 8px 40px
@@ -93,9 +126,13 @@ form
       font-weight: normal
       font-family: muli, sans-serif
       color: white
-      text-shadow: 1px 1px 0 rgba(black, 0.3)
+      text-shadow: 1px 1px 0 rgba(black, 0.2)
+      +box-shadow(1px 1px 0 rgba(white, 0.2))
 
       &:hover
+        background: #7bd * 1.03
+
+      &:active
         background: #777
 
 hgroup

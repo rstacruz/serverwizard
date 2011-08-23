@@ -73,8 +73,13 @@ class Script
     return Array.new  unless meta.fields?
 
     meta.fields.map { |k, v|
-      v =~ /^(.*?) \((.*?)\)$/
-      Hashie::Mash.new :type => $2, :name => $1, :id => k, :default => ''
+      if v.is_a?(String)
+        v =~ /^(.*?) \((.*?)\)$/
+        Hashie::Mash.new :type => $2, :name => $1, :id => k, :default => ''
+      elsif v.is_a?(Hash)
+        defaults = { :type => 'text', :placeholder => '', :default => '', :id => k }
+        Hashie::Mash.new defaults.merge(v)
+      end
     }
   end
 

@@ -2,8 +2,11 @@
 # position: 10
 # description: Sets up a user for you.
 # fields:
-#   MY_USER: "My username (text)"
-#   SSH_PUBKEY: "Public SSH key (textarea)"
+#   MY_USER:
+#     name: My username
+#   SSH_PUBKEY:
+#     name: Public SSH key
+#     description: Paste this from ~/.ssh/id_rsa.pub.
 #
 status "Creating your user $MY_USER..."
 useradd $MY_USER --home "/home/$MY_USER" --create-home --shell /bin/bash

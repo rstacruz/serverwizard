@@ -1,6 +1,8 @@
 # name: MySQL
 # fields:
-#   MYSQL_ROOT_PASSWORD: "Root password (text)"
+#   MYSQL_ROOT_PASSWORD:
+#     name: Root password
+#     default: root
 
 ensure_updated_apt
 
