@@ -1,4 +1,4 @@
-# name: Redis 2.2.12
+# name: Redis 2.2
 # description: Compiled from source.
 # files:
 #  - redis/redis
