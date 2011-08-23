@@ -32,7 +32,7 @@ class AppTest < UnitTest
   test "files" do
     s = ScriptBundle.new(%w(mysql nginx_passenger redis))
     s.files.should.include "redis/redis"
-    s.files.should.include "nginx/nginx.conf"
+    s.files.should.include "nginx/nginx.conf.sh"
   end
 
   test "tarball" do
@@ -50,7 +50,7 @@ class AppTest < UnitTest
     File.file?("#{prefix}/remote.sh").should == true
     File.file?("#{prefix}/bootstrap.sh").should == true
     File.file?("#{prefix}/nginx/nginx").should == true
-    File.file?("#{prefix}/nginx/nginx.conf").should == true
+    File.file?("#{prefix}/nginx/nginx.conf.sh").should == true
     File.file?("#{prefix}/nginx/conf.d/virtual.conf").should == true
     File.stat( "#{prefix}/remote.sh").mode.should == 0100755
     File.stat( "#{prefix}/bootstrap.sh").mode.should == 0100755
