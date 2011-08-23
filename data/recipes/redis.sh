@@ -4,7 +4,7 @@
 #  - redis/redis
 
 ensure_updated_apt
-apt-get install -y gcc make
+apt-get install -y build-essential make
 
 status "Downloading Redis..."
 mkdir -p /tmp/redis-src
@@ -31,5 +31,5 @@ update-rc.d redis defaults
 cd $DIR
 rm -rf /tmp/redis-src
 
-status "Redis installed."
-status "The config file can be found in /etc/redis/redis.conf."
+status  "Redis installed."
+status_ "The config file can be found in /etc/redis/redis.conf."
