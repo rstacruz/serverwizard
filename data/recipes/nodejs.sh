@@ -1,8 +1,8 @@
 # name: NodeJS with NPM
 # notes: |
 #  - You may need to type *"yes"* somewhere during the installation of NPM.
-
-ensure_updated_apt
+# needs:
+#   - _aptupdate
 
 installing "NodeJS"
 apt-get install -y python-software-properties curl

@@ -12,6 +12,13 @@ class ScriptBundle
     @custom  = custom
     @recipes = recipe_names.map { |r| Script[r] }.compact
     @host    = host
+
+    # Add dependencies
+    @recipes += @recipes.map { |r| r.dependencies }.flatten
+    @recipes.uniq!
+
+    # Ensure proper sort order
+    @recipes = @recipes.sort_by { |r| r.sort_position }
   end
 
   def notes

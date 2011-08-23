@@ -13,14 +13,6 @@ die()        { err "$*"; exit 256; }
 cat_file()    { [ -f "$DIR/$*" ] && cat "$DIR/$*" || wget "http://HTTP_HOST/$*" -q -O -; }
 source_file() { cat_file $* | source /dev/stdin; }
 
-ensure_updated_apt() {
-  if [ "$UPDATED_APT" != "1" ]; then
-    status "Updating apt cache..."
-    UPDATED_APT=1
-    apt-get update || (die "Failed to update.")
-  fi
-}
-
 # Ensure Linux-ness
 if [ ! -f "/etc/lsb-release" ]; then
   err  "Only Linux platforms are supported."

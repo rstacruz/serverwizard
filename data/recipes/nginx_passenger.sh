@@ -12,8 +12,8 @@
 #      See *virtual.conf* for an example.
 #    - Control the service using:  
 #      `sudo service nginx {start|stop|reload|restart}`.
-
-ensure_updated_apt
+# needs:
+#   - _aptupdate
 
 HAS_PASSENGER=`gem list | grep passenger | grep 3.0. | wc -l`
 if [ "$HAS_PASSENGER" == "0" ]; then

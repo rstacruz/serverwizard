@@ -14,10 +14,13 @@ class Script
   end
 
   def self.[](id)
-    id = id.scan(/[A-Za-z0-9\-_]/).join('').downcase
+    @@cache ||= Hash.new
+    @@cache[id] ||= begin
+      id = id.scan(/[A-Za-z0-9\-_]/).join('').downcase
 
-    item = new home("#{id}.sh")
-    item if item.exists?
+      item = new home("#{id}.sh")
+      item if item.exists?
+    end
   end
 
   attr_reader :id
@@ -42,6 +45,15 @@ class Script
 
   def notes
     Tilt.new("markdown") { meta.notes }.render  if notes?
+  end
+
+  def dependencies
+    @dependencies ||= begin
+      needs = [*meta[:needs]]
+      deps  = needs.map { |name| Script[name] }
+      deps += deps.map { |d| d.dependencies }.flatten
+      deps
+    end
   end
 
   # Returns a list of recipe names that the recipe implies it needs.

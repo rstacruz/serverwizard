@@ -1,5 +1,7 @@
 # name: Git
 # position: 40
+# needs:
+#   - _aptupdate
 
 ensure_updated_apt
 

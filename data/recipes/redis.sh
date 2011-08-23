@@ -2,8 +2,9 @@
 # description: Compiled from source.
 # files:
 #  - redis/redis
+# needs:
+#  - _aptupdate
 
-ensure_updated_apt
 apt-get install -y build-essential make
 
 status "Downloading Redis..."

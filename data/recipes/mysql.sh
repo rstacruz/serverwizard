@@ -3,8 +3,8 @@
 #   MYSQL_ROOT_PASSWORD:
 #     name: Root password
 #     default: root
-
-ensure_updated_apt
+# needs:
+#   - _aptupdate
 
 installing "MySQL"
 echo mysql-server-5.0 mysql-server/root_password password $MYSQL_ROOT_PASSWORD | debconf-set-selections
