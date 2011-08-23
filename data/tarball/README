@@ -5,7 +5,14 @@ To bootstrap a remote server from your computer, use:
 
     ./remote.sh username@server-name
 
-Or alternatively, copy everything to the server and run:
+This will connect to the remote server via SSH, upload all the
+needed files, and run the bootstrap script.
 
-    ./bootstrap.sh
+Alternative use
+---------------
+
+For servers without SSH access, copy all the files in this
+directory to the server and run:
+
+    sudo ./bootstrap.sh
 
