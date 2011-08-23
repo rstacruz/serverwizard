@@ -14,14 +14,23 @@
 #  * If you need an SSH key for Git, download (*.tar.gz*) the script and add the files `ssh/id_rsa.pub` and `ssh/id_rsa`.
 #  * If you need to do setup (like `bundle install`) for your app, download (*.tar.gz*) the script and edit `bootstrap.sh`.
 
+useradd_() {
+  local HAS_USER=`cat /etc/passwd | egrep ^$1: | wc -l`
+  if [ "$HAS_USER" == "0" ]; then
+    status "Creating user $1..."
+    useradd $*
+  else
+    status "User $1 already exists, skipping user creation."
+  fi
+}
+
 NGINX_ROOT="/opt/nginx"
 APP_PATH="/var/www/$APP_DOMAIN"
 APP_REPO_PATH="$APP_PATH/current"
 APP_LOGS_PATH="$APP_PATH/logs"
 APP_NGINX_CONF="$NGINX_ROOT/conf/conf.d/$APP_DOMAIN.conf"
 
-status "Creating user $APP_USER..."
-useradd $APP_USER --home "/home/$APP_USER" --create-home --shell /bin/bash
+useradd_ $APP_USER --home "/home/$APP_USER" --create-home --shell /bin/bash
 
 mkdir -p /home/$APP_USER/.ssh
 chmod 700 /home/$APP_USER/.ssh

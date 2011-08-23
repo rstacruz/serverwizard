@@ -45,6 +45,10 @@ class Main
     end
   end
 
+  get '/remote.sh' do
+    send_file Main.root('data/tarball/remote.sh')
+  end
+
   helpers do
     def script_url(recipes, custom, type='script')
       url  = "http://#{request.env['HTTP_HOST']}/#{type}/" + recipes.join('+')
