@@ -1,6 +1,6 @@
 # name: Memcache
 # needs:
-#   - _aptupdate
+#   - _apt-update
 
 installing "Memcache"
 apt-get install -y memcached libmemcache-dev

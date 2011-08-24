@@ -2,7 +2,7 @@
 # notes: |
 #  - You may need to type *"yes"* somewhere during the installation of NPM.
 # needs:
-#   - _aptupdate
+#   - _apt-update
 
 installing "NodeJS"
 apt-get install -y python-software-properties curl

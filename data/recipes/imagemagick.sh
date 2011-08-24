@@ -1,6 +1,6 @@
 # name: ImageMagick
 # needs:
-#   - _aptupdate
+#   - _apt-update
 
 installing "ImageMagick"
 apt-get install -y imagemagick

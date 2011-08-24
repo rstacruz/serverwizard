@@ -3,9 +3,8 @@
 # files:
 #  - redis/redis
 # needs:
-#  - _aptupdate
-
-apt-get install -y build-essential make
+#  - _apt-update
+#  - _build-essential
 
 status "Downloading Redis..."
 mkdir -p /tmp/redis-src

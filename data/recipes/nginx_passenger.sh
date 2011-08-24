@@ -13,7 +13,8 @@
 #    - Control the service using:  
 #      `sudo service nginx {start|stop|reload|restart}`.
 # needs:
-#   - _aptupdate
+#   - _apt-update
+#   - _build-essential
 
 HAS_PASSENGER=`gem list | grep passenger | grep 3.0. | wc -l`
 if [ "$HAS_PASSENGER" == "0" ]; then
@@ -22,7 +23,7 @@ if [ "$HAS_PASSENGER" == "0" ]; then
 fi
 
 installing "Nginx via Passenger"
-apt-get install -y libcurl4-openssl-dev make build-essential
+apt-get install -y libcurl4-openssl-dev
 passenger-install-nginx-module --auto --auto-download --prefix=/opt/nginx
 
 installing "Nginx service script"
