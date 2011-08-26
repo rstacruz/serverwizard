@@ -3,11 +3,11 @@
 DIR="`pwd`"
 
 # Helpers
-status()     { echo -e "\033[0;32m*** $*\033[0;m"; }
+status()     { echo -e "\033[0;34m==>\033[0;32m $*\033[0;m"; }
 status_()    { echo -e "\033[0;32m    $*\033[0;m"; }
-err()        { echo -e "\033[0;31mERROR: $*\033[0;m"; }
-err_()       { echo -e "\033[0;31m       $*\033[0;m"; }
-installing() { echo -e "\033[0;32m*** Installing: $*...\033[0;m"; }
+err()        { echo -e "\033[0;31m==> \033[0;33mERROR: \033[0;31m$*\033[0;m"; }
+err_()       { echo -e "\033[0;31m    $*\033[0;m"; }
+installing() { status "Installing \033[0;33m$1\033[0;32m..."; }
 die()        { err "$*"; exit 256; }
 
 cat_file()    { [ -f "$DIR/$*" ] && cat "$DIR/$*" || wget "http://HTTP_HOST/$*" -q -O -; }

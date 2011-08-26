@@ -11,7 +11,5 @@ gpg --keyserver pgp.mit.edu --recv-keys 4BD736A82B5C1B00
 gpg --export --armor 4BD736A82B5C1B00 | apt-key add -
 
 installing "Cassandra"
-
 apt-get update
 apt-get install -y cassandra
-
