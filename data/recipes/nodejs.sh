@@ -3,7 +3,7 @@
 # notes: |
 #  - You may need to type *"yes"* somewhere during the installation of NPM.
 # needs:
-#   - _apt-update
+#  - _apt-update
 #  - _build-essential
 
 apt-get install -y libssl-dev
