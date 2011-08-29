@@ -1,5 +1,5 @@
-# name: NodeJS with NPM
-# description: Latest, compiled from source.
+# name: NodeJS 0.4 with NPM
+# description: Compiled from source.
 # notes: |
 #  - You may need to type *"yes"* somewhere during the installation of NPM.
 # needs:
@@ -12,7 +12,7 @@ installing "NodeJS"
 status "Downloading NodeJS..."
 mkdir -p /tmp/nodejs-src
 cd /tmp/nodejs-src
-wget http://nodejs.org/dist/node-latest.tar.gz
+wget http://nodejs.org/dist/node-v0.4.11.tar.gz
 tar zxf node-latest.tar.gz --strip-components=1
 
 status "Building NodeJS..."
