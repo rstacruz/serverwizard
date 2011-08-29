@@ -36,3 +36,4 @@ Inspired by Intridea's [RailsWizard.org](http://railswizard.org).
 
 Authored and maintaned by [Rico Sta. Cruz](http://ricostacruz.com), sponsored by
 [Sinefunc, Inc](http://sinefunc.com). Released under the MIT license.
+
