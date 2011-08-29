@@ -13,7 +13,7 @@ status "Downloading NodeJS..."
 mkdir -p /tmp/nodejs-src
 cd /tmp/nodejs-src
 wget http://nodejs.org/dist/node-v0.4.11.tar.gz
-tar zxf node-latest.tar.gz --strip-components=1
+tar zxf node-*.tar.gz --strip-components=1
 
 status "Building NodeJS..."
 ./configure --prefix=/usr/local
