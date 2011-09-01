@@ -1,0 +1,121 @@
+#!/bin/sh
+#
+# custom haproxy init.d script, by Mattias Geniar
+# Modified by Rico Sta. Cruz for Server Wizard
+#
+# chkconfig: 345 55 45
+# description: haproxy is a TCP loadbalancer
+# probe: true
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+# Source networking configuration.
+. /etc/sysconfig/network
+
+HAPROXY_CONF=/etc/haproxy/haproxy.cfg
+HAPROXY_BIN=/usr/sbin/haproxy
+HAPROXY_PID=$HAPROXY_PID
+
+# Check that networking is up.
+[ ${NETWORKING} = "no" ] && exit 0
+
+[ -f $HAPROXY_BIN ] || exit 0
+[ -f $HAPROXY_CONF ] || exit 0
+
+# Define our actions
+checkconfig() {
+    # Check the config file for errors
+    $HAPROXY_BIN -c -q -f $HAPROXY_CONF
+    if [ $? -ne 0 ]; then
+            echo "Errors found in configuration file."
+            return 1
+      fi
+
+    # We're OK!
+    return 0
+}
+
+start() {
+    # Check config
+    checkconfig || return 1
+
+    echo -n "Starting HAProxy: "
+    daemon $HAPROXY_BIN -D -f $HAPROXY_CONF -p $HAPROXY_PID
+
+    RETVAL=$?
+    echo
+      [ $RETVAL -eq 0 ] && touch /var/lock/subsys/haproxy
+      return $RETVAL
+}
+
+stop() {
+    echo -n "Shutting down HAProxy: "
+      killproc haproxy -USR1
+
+      RETVAL=$?
+      echo
+      [ $RETVAL -eq 0 ] && rm -f /var/lock/subsys/haproxy
+      [ $RETVAL -eq 0 ] && rm -f $HAPROXY_PID
+      return $RETVAL
+}
+
+restart() {
+    $HAPROXY_BIN -c -q -f $HAPROXY_CONF
+        if [ $? -ne 0 ]; then
+                echo "Errors found in configuration file."
+                return 1
+        fi
+
+    stop
+      start
+}
+
+check() {
+      $HAPROXY_BIN -c -q -V -f $HAPROXY_CONF
+}
+
+rhstatus() {
+      status haproxy
+}
+
+reload() {
+    $HAPROXY_BIN -c -q -f $HAPROXY_CONF
+        if [ $? -ne 0 ]; then
+                echo "Errors found in configuration file."
+                return 1
+        fi
+
+    echo -n "Reloading HAProxy config: "
+    $HAPROXY_BIN -f $HAPROXY_CONF -p $HAPROXY_PID -sf $(cat $HAPROXY_PID)
+
+    success $"Reloading HAProxy config: "
+    echo
+}
+
+# Possible parameters
+case "$1" in
+  start)
+        start
+        ;;
+  stop)
+        stop
+        ;;
+  status)
+        rhstatus
+        ;;
+  restart)
+        restart
+        ;;
+  reload)
+        reload
+        ;;
+  checkconfig)
+        check
+        ;;
+  *)
+        echo "Usage: haproxy {start|stop|status|restart|reload|checkconfig}"
+        exit 1
+esac
+
+exit 0

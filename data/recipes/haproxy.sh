@@ -2,11 +2,13 @@
 # description: Compiled from source.
 # files:
 #  - haproxy/haproxy.cfg
+#  - haproxy/haproxy
+# notes: |
+#  - Control the service using:  
+#    `sudo service haproxy {start|stop|reload|restart}`.
 # needs:
 #  - _apt-update
 #  - _build-essential
-# notes:
-#  - Haproxy will not start on system startup. (TODO)
 
 status "Downloading Haproxy..."
 mkdir -p /tmp/haproxy-src
@@ -23,6 +25,12 @@ status "Installing Haproxy config files..."
 mkdir -p /etc/haproxy
 cat_file haproxy/haproxy.cfg > /etc/haproxy/haproxy.cfg
 chmod 644 /etc/haproxy/haproxy.cfg
+
+cat_file haproxy/haproxy > /etc/init.d/haproxy
+chmod 755 /etc/init.d/haproxy
+
+status "Making Haproxy start on system startup"
+update-rc.d haproxy defaults
 
 cd $DIR
 rm -rf /tmp/haproxy-src
