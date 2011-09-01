@@ -14,7 +14,7 @@ class DepTest < UnitTest
 
   test "include" do
     b = Bundle.new %w(git hostname)
-    b.recipes.should.include Recipe['_aptupdate']
+    b.recipes.should.include Recipe['_apt-update']
   end
 
   test "uniq" do
