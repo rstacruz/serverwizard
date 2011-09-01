@@ -2,7 +2,7 @@ require_relative '../test_helper'
 
 class DepTest < UnitTest
   test "dependency" do
-    Recipe['git'].dependencies.first.id.should == '_aptupdate'
+    Recipe['git'].dependencies.first.id.should == '_apt-update'
   end
 
   test "dependency in bundle" do
