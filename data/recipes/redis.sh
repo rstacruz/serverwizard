@@ -9,11 +9,9 @@
 status "Downloading Redis..."
 mkdir -p /tmp/redis-src
 cd /tmp/redis-src
-wget http://redis.googlecode.com/files/redis-2.2.12.tar.gz
-tar -xzvf redis-2.2.12.tar.gz
+wget -O - "http://redis.googlecode.com/files/redis-2.2.12.tar.gz" | tar zx --strip-components=1
 
 installing "Redis"
-cd redis-2.2.12
 make
 cp src/redis-{benchmark,check-aof,check-dump,cli,server} /usr/local/bin
 
