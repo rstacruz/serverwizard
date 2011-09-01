@@ -1,4 +1,6 @@
+# #### BEGIN SCRIPT INFO ###
 # name: Common
+# #### END SCRIPT INFO #####
 
 DIR="`pwd`"
 

@@ -1,3 +1,4 @@
+# #### BEGIN SCRIPT INFO ###
 # name: NodeJS 0.4 with NPM
 # description: Compiled from source.
 # notes: |
@@ -5,6 +6,7 @@
 # needs:
 #  - _apt-update
 #  - _build-essential
+# #### END SCRIPT INFO #####
 
 apt-get install -y libssl-dev
 

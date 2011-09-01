@@ -1,8 +1,10 @@
+# #### BEGIN SCRIPT INFO ###
 # name: Ruby 1.9.2
 # position: 30
 # description: Compiled from source.
 # needs:
 # - _apt-update
+# #### END SCRIPT INFO #####
 
 installing "Ruby dependencies"
 apt-get -y install libc6-dev libssl-dev libmysql++-dev libsqlite3-dev make build-essential libssl-dev libreadline5-dev zlib1g-dev unzip wget

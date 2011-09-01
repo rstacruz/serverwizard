@@ -1,3 +1,4 @@
+# #### BEGIN SCRIPT INFO ###
 # name: Nginx with Passenger 3
 # description: Compiles Nginx from source.
 # implies:
@@ -15,6 +16,7 @@
 # needs:
 #   - _apt-update
 #   - _build-essential
+# #### END SCRIPT INFO #####
 
 HAS_PASSENGER=`gem list | grep passenger | grep 3.0. | wc -l`
 if [ "$HAS_PASSENGER" == "0" ]; then

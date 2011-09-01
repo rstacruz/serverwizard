@@ -1,3 +1,4 @@
+# #### BEGIN SCRIPT INFO ###
 # name: Redis 2.2
 # description: Compiled from source.
 # files:
@@ -5,6 +6,7 @@
 # needs:
 #  - _apt-update
 #  - _build-essential
+# #### END SCRIPT INFO #####
 
 status "Downloading Redis..."
 mkdir -p /tmp/redis-src

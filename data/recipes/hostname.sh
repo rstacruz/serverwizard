@@ -1,9 +1,11 @@
+# #### BEGIN SCRIPT INFO ###
 # name: Change host name
 # description: Changes the hostname of the server.
 # position: 10
 # fields:
 #   HOST_NAME:
 #     name: Host name
+# #### END SCRIPT INFO #####
 
 status "Changing hostname to '$HOST_NAME'..."
 echo "127.0.1.1 $HOST_NAME" >> /etc/hosts

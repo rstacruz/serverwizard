@@ -1,3 +1,4 @@
+# #### BEGIN SCRIPT INFO ###
 # name: Haproxy 1.4
 # description: Compiled from source.
 # files:
@@ -9,6 +10,7 @@
 # needs:
 #  - _apt-update
 #  - _build-essential
+# #### END SCRIPT INFO #####
 
 status "Downloading Haproxy..."
 mkdir -p /tmp/haproxy-src

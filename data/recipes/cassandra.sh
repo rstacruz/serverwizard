@@ -1,5 +1,7 @@
+# #### BEGIN SCRIPT INFO ###
 # name: Cassandra 0.8
 # description: From Apache.org's deb sources.
+# #### END SCRIPT INFO #####
 
 status "Adding Apache.org's apt source for Cassandra..."
 (

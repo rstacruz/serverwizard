@@ -1,3 +1,4 @@
+# #### BEGIN SCRIPT INFO ###
 # name: My user
 # position: 10
 # description: Sets up a user for you.
@@ -7,6 +8,7 @@
 #   SSH_PUBKEY:
 #     name: Public SSH key
 #     description: Paste this from ~/.ssh/id_rsa.pub.
+# #### END SCRIPT INFO #####
 
 status "Creating your user $MY_USER..."
 useradd $MY_USER --home "/home/$MY_USER" --create-home --shell /bin/bash

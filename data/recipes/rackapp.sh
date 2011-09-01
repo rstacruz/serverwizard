@@ -1,3 +1,4 @@
+# #### BEGIN SCRIPT INFO ###
 # name: Rack app
 # description: via Git + Nginx + Passenger.
 # position: 70
@@ -21,6 +22,7 @@
 # notes: |
 #  * If you need an SSH key for Git, download (*.tar.gz*) the script and add the files `ssh/id_rsa.pub` and `ssh/id_rsa`.
 #  * If you need to do setup (like `bundle install`) for your app, download (*.tar.gz*) the script and edit `bootstrap.sh`.
+# #### END SCRIPT INFO #####
 
 useradd_() {
   local HAS_USER=`cat /etc/passwd | egrep ^$1: | wc -l`

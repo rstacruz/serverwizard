@@ -1,3 +1,4 @@
+# #### BEGIN SCRIPT INFO ###
 # name: Git user
 # description: Creates a git user.
 # implies:
@@ -10,6 +11,7 @@
 #    `git create repo`
 #  - To use that repo type this in your local machine:  
 #   `git remote add origin git@SERVERNAME:repo.git`
+# #### END SCRIPT INFO #####
 
 status "Creating the Git user..."
 useradd git --home /home/git --create-home --shell /usr/bin/git-shell
