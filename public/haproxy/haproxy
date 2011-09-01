@@ -14,7 +14,7 @@
 . /etc/sysconfig/network
 
 HAPROXY_CONF=/etc/haproxy/haproxy.cfg
-HAPROXY_BIN=/usr/sbin/haproxy
+HAPROXY_BIN=/usr/local/sbin/haproxy
 HAPROXY_PID=$HAPROXY_PID
 
 # Check that networking is up.
