@@ -66,6 +66,7 @@ fi
 status "Cloning repository to $APP_REPO_PATH..."
 mkdir -p "$APP_REPO_PATH"
 chown -R $APP_USER:$APP_USER $APP_PATH
+cd "$APP_REPO_PATH"
 sudo -u $APP_USER git clone $APP_GIT_REPO "$APP_REPO_PATH"
 
 status "Setting up logs ($APP_LOGS_PATH)..."
