@@ -38,3 +38,6 @@ if [ -f "$DIR/ssh/id_rsa.pub" ]; then
   chmod 644 /home/$MY_USER/.ssh/id_rsa.pub
 fi
 
+# Ensure permissions are correct.
+chown -R $MY_USER:$MY_USER /home/$MY_USER/.ssh
+
