@@ -9,8 +9,8 @@
 # #### END SCRIPT INFO #####
 
 status "Downloading Redis..."
-mkdir -p /tmp/redis-src
-cd /tmp/redis-src
+mkdir -p ~/.src/redis-src
+cd ~/.src/redis-src
 wget -O - "http://redis.googlecode.com/files/redis-2.2.12.tar.gz" | tar zx --strip-components=1
 
 installing "Redis"
@@ -29,7 +29,7 @@ status "Making Redis start on system startup"
 update-rc.d redis defaults
 
 cd $DIR
-rm -rf /tmp/redis-src
+rm -rf ~/.src/redis-src
 
 status  "Redis installed."
 status_ "The config file can be found in /etc/redis/redis.conf."

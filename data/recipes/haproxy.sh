@@ -13,8 +13,8 @@
 # #### END SCRIPT INFO #####
 
 status "Downloading Haproxy..."
-mkdir -p /tmp/haproxy-src
-cd /tmp/haproxy-src
+mkdir -p ~/.src/haproxy-src
+cd ~/.src/haproxy-src
 wget -O - "http://haproxy.1wt.eu/download/1.4/src/haproxy-1.4.16.tar.gz" | tar xz --strip-components=1
 
 status "Buidling Haproxy..."
@@ -35,7 +35,7 @@ status "Making Haproxy start on system startup"
 update-rc.d haproxy defaults
 
 cd $DIR
-rm -rf /tmp/haproxy-src
+rm -rf ~/.src/haproxy-src
 
-status  "haproxy installed."
+status  "Haproxy installed."
 status_ "The config file can be found in /etc/haproxy/haproxy.cfg."

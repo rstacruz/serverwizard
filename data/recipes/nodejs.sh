@@ -12,8 +12,8 @@ apt-get install -y libssl-dev
 
 installing "NodeJS"
 status "Downloading NodeJS..."
-mkdir -p /tmp/nodejs-src
-cd /tmp/nodejs-src
+mkdir -p ~/.src/nodejs-src
+cd ~/.src/nodejs-src
 wget http://nodejs.org/dist/node-v0.4.11.tar.gz
 tar zxf node-*.tar.gz --strip-components=1
 
@@ -25,4 +25,4 @@ installing "Node Package Manager"
 wget http://npmjs.org/install.sh -q -O - | sudo sh
 
 cd $DIR
-rm -rf /tmp/nodejs-src
+rm -rf ~/.src/nodejs-src

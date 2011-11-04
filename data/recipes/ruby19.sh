@@ -10,8 +10,8 @@ installing "Ruby dependencies"
 apt-get -y install libc6-dev libssl-dev libmysql++-dev libsqlite3-dev make build-essential libssl-dev libreadline5-dev zlib1g-dev unzip wget libyaml-dev
 
 status "Downloading Ruby..."
-mkdir -p /tmp/ruby-src
-cd /tmp/ruby-src
+mkdir -p ~/.src/ruby-src
+cd ~/.src/ruby-src
 wget http://ftp.ruby-lang.org/pub/ruby/1.9/ruby-1.9.2-p180.tar.gz
 tar -xzvf ruby-1.9.2-p180.tar.gz
 
@@ -21,4 +21,4 @@ cd ruby-1.9.2-p180
 make && make install
 
 cd $DIR
-rm -rf /tmp/ruby-src
+rm -rf ~/.src/ruby-src
