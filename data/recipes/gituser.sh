@@ -1,6 +1,7 @@
 # #### BEGIN SCRIPT INFO ###
 # name: Git user
 # description: Creates a git user.
+# position: 45
 # implies:
 #  - git
 # files:
