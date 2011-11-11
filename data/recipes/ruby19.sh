@@ -12,11 +12,9 @@ apt-get -y install libc6-dev libssl-dev libmysql++-dev libsqlite3-dev make build
 status "Downloading Ruby..."
 mkdir -p ~/.src/ruby-src
 cd ~/.src/ruby-src
-wget http://ftp.ruby-lang.org/pub/ruby/1.9/ruby-1.9.2-p180.tar.gz
-tar -xzvf ruby-1.9.2-p180.tar.gz
+wget http://ftp.ruby-lang.org/pub/ruby/1.9/ruby-1.9.3-p0.tar.gz -q -O - | tar xz --strip-components=1
 
 installing "Ruby"
-cd ruby-1.9.2-p180
 ./configure --prefix=/usr/local
 make && make install
 
