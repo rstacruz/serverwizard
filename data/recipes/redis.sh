@@ -11,7 +11,7 @@
 status "Downloading Redis..."
 mkdir -p ~/.src/redis-src
 cd ~/.src/redis-src
-wget -O - "http://redis.googlecode.com/files/redis-2.2.12.tar.gz" | tar zx --strip-components=1
+wget "http://redis.googlecode.com/files/redis-2.2.12.tar.gz" -q -O - | tar xz --strip-components=1
 
 installing "Redis"
 make

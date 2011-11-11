@@ -14,8 +14,7 @@ installing "NodeJS"
 status "Downloading NodeJS..."
 mkdir -p ~/.src/nodejs-src
 cd ~/.src/nodejs-src
-wget http://nodejs.org/dist/node-v0.4.11.tar.gz
-tar zxf node-*.tar.gz --strip-components=1
+wget http://nodejs.org/dist/node-v0.4.11.tar.gz -q -O - | tar xz --strip-components=1
 
 status "Building NodeJS..."
 ./configure --prefix=/usr/local
