@@ -1,5 +1,5 @@
 # #### BEGIN SCRIPT INFO ###
-# name: Ruby 1.9.2
+# name: Ruby 1.9.3
 # position: 30
 # description: Compiled from source.
 # needs:
