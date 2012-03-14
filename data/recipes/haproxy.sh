@@ -1,6 +1,14 @@
 # #### BEGIN SCRIPT INFO ###
 # name: Haproxy 1.4
 # description: Compiled from source.
+# fields:
+#   HAPROXY_VERSION
+#     name: Haproxy version
+#     inline: true
+#     options:
+#       - 1.4.16
+#       - 1.4.20
+#     default: 1.4.20
 # files:
 #  - haproxy/haproxy.cfg
 #  - haproxy/haproxy
@@ -15,7 +23,7 @@
 status "Downloading Haproxy..."
 mkdir -p ~/.src/haproxy-src
 cd ~/.src/haproxy-src
-wget -O - "http://haproxy.1wt.eu/download/1.4/src/haproxy-1.4.16.tar.gz" | tar xz --strip-components=1
+wget -O - "http://haproxy.1wt.eu/download/1.4/src/haproxy-$HAPROXY_VERSION.tar.gz" | tar xz --strip-components=1
 
 status "Buidling Haproxy..."
 make TARGET=linux26
