@@ -1,3 +1,7 @@
+# A Bundle of Recipes.
+#
+#     Bundle.new recipes (array), custom (variables hash), request.env['HTTP_HOST']
+#
 class Bundle
   # Builds a script
   def self.build(recipe_names, custom={}, host='serverwizard.org')
@@ -117,17 +121,38 @@ class Bundle
 
   def contents_src
     @recipes.map { |r|
-      heading(r.name) + r.contents
+      heading(r.name) + r.contents(inline_customs)
     }.join("\n\n")
   end
 
+  # Returns a hash of custom variables without inline variables.
+  def non_inline_customs
+    return Hash.new  if !@custom || !@custom.any?
+
+    fields = @custom.dup
+    inline_fields.each { |f| fields.delete f }
+    fields
+  end
+
+  def inline_customs
+    return Hash.new  if !@custom || !@custom.any?
+
+    fields = @custom.dup
+    fields.each { |k, v| fields.delete k  unless inline_fields.include?(k) }
+    fields
+  end
+
+  def inline_fields
+    @inline_fields ||= @recipes.map { |r| r.inline_fields }.flatten
+  end
+
   def custom_variables_src
+
     output = ""
+    vars = non_inline_customs # A hash
 
-    if @custom && @custom.any?
-      output += heading("Custom variables")
-
-      @custom.each { |k, v|
+    if vars.any?
+      vars.each { |k, v|
         output += "export #{k}=#{v.inspect}\n"
       }
 

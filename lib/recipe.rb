@@ -1,3 +1,16 @@
+# A Recipe.
+#
+#     r = Recipe['ruby19']
+#     r.id     #=> 'ruby19"
+#     r.file   # File path
+#
+#     r.notes?
+#     r.notes          #=> "This is the Ruby recipe..."
+#     r.dependencies   # Array of Recipes
+#
+#     r.fields         # Array of fields, described later below
+#     r.inline_fields  #=> ["RUBY_VERSION"]
+#
 class Recipe
   def self.home(*a)
     Main.root 'data', 'recipes', *a
@@ -47,6 +60,14 @@ class Recipe
     Tilt.new("markdown") { meta.notes }.render  if notes?
   end
 
+  # Returns an array of keys of fields that should be inlined.
+  def inline_fields
+    fields.inject(Array.new) do |arr, field|
+      arr << field.id  if field.inline
+      arr
+    end
+  end
+
   def dependencies
     @dependencies ||= begin
       needs = [*meta[:needs]]
@@ -73,23 +94,37 @@ class Recipe
     raw_contents && @meta
   end
 
-  def contents
-    raw_contents && @contents
+  def contents(inlines={})
+    raw_contents
+
+    contents = @contents.dup
+
+    inlines.each { |k, v| contents.gsub!(/\$#{k}\b/, v) }
+    contents
   end
 
   def on_by_default
     meta[:on_by_default]
   end
 
+  # Array of fields.
+  #
+  #     id: 'RUBY_VERSION'
+  #     type: 'text'
+  #     placeholder: ''
+  #     default: '1.9.3-p0'
+  #     inline: false
+  #     options: [...] # optional
+  #
   def fields
     return Array.new  unless meta.fields?
 
     meta.fields.map { |k, v|
       if v.is_a?(String)
         v =~ /^(.*?) \((.*?)\)$/
-        Hashie::Mash.new :type => $2, :name => $1, :id => k, :default => ''
+        Hashie::Mash.new :type => $2, :name => $1, :id => k, :default => '', :inline => false
       elsif v.is_a?(Hash)
-        defaults = { :type => 'text', :placeholder => '', :default => '', :id => k }
+        defaults = { :type => 'text', :placeholder => '', :default => '', :id => k, :inline => false }
         Hashie::Mash.new defaults.merge(v)
       end
     }
@@ -101,7 +136,7 @@ class Recipe
 
       # Extract the metadata
       meta = Array.new
-      
+
       lines = raw.split("\n")
       lines.each { |line|
         break  unless line =~ /^# (.*)$/

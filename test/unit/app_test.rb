@@ -13,6 +13,16 @@ class AppTest < UnitTest
     Recipe['mysql'].contents.should.include "start on boot"
   end
 
+  test "inlines" do
+    contents = Recipe['ruby19'].contents({ 'RUBY_VERSION' => 'skitz' })
+    contents.should.include "skitz.tar.gz"
+  end
+
+  test "inline in bundles" do
+    output = Bundle.build(%w(ruby19), { 'RUBY_VERSION' => 'skitz' }, 'serverwizard.dev')
+    output.should.include "skitz.tar.gz"
+  end
+
   test "fields" do
     field = Recipe['mysql'].fields.first
     field.name.should == "Root password"

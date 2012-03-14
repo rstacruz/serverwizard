@@ -5,6 +5,7 @@
 # fields:
 #   RUBY_VERSION:
 #     name: Ruby version
+#     inline: true
 #     options:
 #       - ruby-1.9.2-p290
 #       - ruby-1.9.3-p0
