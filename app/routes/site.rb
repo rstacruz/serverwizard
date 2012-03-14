@@ -10,12 +10,15 @@ class Main
     redirect '/'  unless params[:recipes].to_s.size > 0
     redirect '/'  if params[:custom] && params[:custom].any? && params[:custom].any? { |k, v| v.to_s.empty? }
 
-    @url     = script_url(params[:recipes], params[:custom])
-    @tar_url = script_url(params[:recipes], params[:custom], :tarball)
-    @sh_url  = script_url(params[:recipes], params[:custom], :script_download)
+    @bundle = bundle(params[:recipes], params[:custom])
+
+    customs = @bundle.non_default_customs
+
+    @url     = script_url(params[:recipes], customs)
+    @tar_url = script_url(params[:recipes], customs, :tarball)
+    @sh_url  = script_url(params[:recipes], customs, :script_download)
 
     @command = "sudo bash < <(wget \"#{@url}\" -q -O -)"
-    @bundle = bundle(params[:recipes], params[:custom])
 
     haml :script
   end

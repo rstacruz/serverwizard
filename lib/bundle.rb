@@ -142,6 +142,29 @@ class Bundle
     fields
   end
 
+  def non_default_customs
+    values = Hash.new
+    @custom.each do |k, v|
+      p fields
+      values[k] = v  if fields_hash[k] && fields_hash[k][:default] != v
+    end
+    values
+  end
+
+  # All fields
+  def fields
+    @recipes.map { |r| r.fields }.flatten
+  end
+
+  # All fields, as a hash
+  def fields_hash
+    @fields_hash ||= begin
+      hash = Hash.new
+      fields.each { |f| hash[f.id] = f }
+      hash
+    end
+  end
+
   def inline_fields
     @inline_fields ||= @recipes.map { |r| r.inline_fields }.flatten
   end
