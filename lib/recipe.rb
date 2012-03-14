@@ -99,7 +99,11 @@ class Recipe
 
     contents = @contents.dup
 
-    (default_inlines.merge(inlines)).each { |k, v| contents.gsub!(/\$#{k}\b/, v) }
+    vars = default_inlines.merge(inlines)
+    vars.each { |k, v| contents.gsub!(/\$#{k}\b/, v) }
+
+    # Parse in via ERB
+    contents = Tilt.new('.erb') { contents }.render({}, { vars: vars })
     contents
   end
 
