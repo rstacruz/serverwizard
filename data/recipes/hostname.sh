@@ -5,6 +5,7 @@
 # fields:
 #   HOST_NAME:
 #     name: Host name
+#     inline: true
 # #### END SCRIPT INFO #####
 
 status "Changing hostname to '$HOST_NAME'..."

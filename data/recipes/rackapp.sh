@@ -12,13 +12,16 @@
 #    name: Username
 #    default: myapp
 #    description: This is the name of the user that will own the application files. It will be created if it doesn't exist.
+#    inline: true
 #   APP_DOMAIN:
 #    name: Domain name
 #    default: myapp.com
 #    description: The domain name that the application will be served under.
+#    inline: true
 #   APP_GIT_REPO:
 #    name: Git repository URL
 #    default: http://github.com/rstacruz/serverwizard.git
+#    inline: true
 # notes: |
 #  * If you need an SSH key for Git, download (*.tar.gz*) the script and add the files `ssh/id_rsa.pub` and `ssh/id_rsa`.
 #  * If you need to do setup (like `bundle install`) for your app, download (*.tar.gz*) the script and edit `bootstrap.sh`.

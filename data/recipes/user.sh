@@ -5,6 +5,7 @@
 # fields:
 #   MY_USER:
 #     name: My username
+#     inline: true
 #   SSH_PUBKEY:
 #     name: Public SSH key
 #     description: Paste this from ~/.ssh/id_rsa.pub.

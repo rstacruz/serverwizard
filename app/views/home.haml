@@ -21,7 +21,7 @@
           %label
             = "#{field.name}:"
           - if field.options?
-            %select{:name => "custom[#{field.id}]"}
+            %select{:disabled => true, :name => "custom[#{field.id}]"}
               - field.options.each do |opt|
                 %option{:value => opt}= opt
           - else

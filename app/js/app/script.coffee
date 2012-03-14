@@ -7,7 +7,7 @@ $("input[type=checkbox]").live 'change', ->
   if checked
     $p.addClass 'checked'
     $custom.show()
-    $custom.find('input').removeAttr 'disabled'
+    $custom.find('input, select').removeAttr 'disabled'
     $($custom.find('input')[0]).focus()
 
     # Implies?
