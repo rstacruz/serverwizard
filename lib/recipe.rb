@@ -99,8 +99,16 @@ class Recipe
 
     contents = @contents.dup
 
-    inlines.each { |k, v| contents.gsub!(/\$#{k}\b/, v) }
+    (default_inlines.merge(inlines)).each { |k, v| contents.gsub!(/\$#{k}\b/, v) }
     contents
+  end
+
+  def default_inlines
+    values = Hash.new
+    fields.each do |f|
+      values[f.id] = f[:default]  if f.inline && f[:default]
+    end
+    values
   end
 
   def on_by_default
