@@ -20,11 +20,31 @@ form
   +border-radius(4px)
   +box-shadow(1px 1px 10px rgba(black, 0.1))
 
+  // A recipe
   article
     border-top: solid 1px #eee
     padding: 0
     margin: 0
     font-size: 10pt
+
+    // Ellipsis...
+    .more
+      float: right
+      background: #eee
+      +border-radius(4px)
+      border: solid 1px #ddd
+      padding: 0 4px
+      display: inline-block
+      line-height: 16px
+      color: #ccc
+      margin-right: -6px
+      margin-left: 8px
+
+      cursor: pointer
+
+    &:active .more
+      background: #ddd
+      color: #fff
 
     > label > input
       margin-right: 10px
