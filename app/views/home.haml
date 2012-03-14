@@ -20,7 +20,12 @@
         %p.custom.hide
           %label
             = "#{field.name}:"
-          %input{:disabled => true, :type => 'text', :name => "custom[#{field.id}]", :value => field[:default], :placeholder => field[:placeholder]}
+          - if field.options?
+            %select{:name => "custom[#{field.id}]"}
+              - field.options.each do |opt|
+                %option{:value => opt}= opt
+          - else
+            %input{:disabled => true, :type => 'text', :name => "custom[#{field.id}]", :value => field[:default], :placeholder => field[:placeholder]}
           - if field.description?
             %span.desc
               %big= field.name
