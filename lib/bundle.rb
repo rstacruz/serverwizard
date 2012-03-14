@@ -127,7 +127,7 @@ class Bundle
 
   # Returns a hash of custom variables without inline variables.
   def non_inline_customs
-    return Hash.new  if !@custom || !@custom.any?
+    return Hash.new  if !@custom || @custom.empty?
 
     fields = @custom.dup
     inline_fields.each { |f| fields.delete f }
@@ -135,7 +135,7 @@ class Bundle
   end
 
   def inline_customs
-    return Hash.new  if !@custom || !@custom.any?
+    return Hash.new  if !@custom || @custom.empty?
 
     fields = @custom.dup
     fields.each { |k, v| fields.delete k  unless inline_fields.include?(k) }
@@ -144,6 +144,7 @@ class Bundle
 
   def non_default_customs
     values = Hash.new
+    return values  if !@custom || @custom.empty?
     @custom.each do |k, v|
       p fields
       values[k] = v  if fields_hash[k] && fields_hash[k][:default] != v
