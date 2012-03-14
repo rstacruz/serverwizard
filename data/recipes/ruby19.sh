@@ -7,10 +7,10 @@
 #     name: Ruby version
 #     inline: true
 #     options:
-#       - ruby-1.9.2-p290
-#       - ruby-1.9.3-p0
-#       - ruby-1.9.3-p125
-#     default: ruby-1.9.3-p125
+#       - 1.9.2-p290
+#       - 1.9.3-p0
+#       - 1.9.3-p125
+#     default: 1.9.3-p125
 # needs:
 # - _apt-update
 # #### END SCRIPT INFO #####
@@ -21,7 +21,7 @@ apt-get -y install libc6-dev libssl-dev libmysql++-dev libsqlite3-dev make build
 status "Downloading Ruby..."
 mkdir -p ~/.src/ruby-src
 cd ~/.src/ruby-src
-wget http://ftp.ruby-lang.org/pub/ruby/1.9/$RUBY_VERSION.tar.gz -q -O - | tar xz --strip-components=1
+wget http://ftp.ruby-lang.org/pub/ruby/1.9/ruby-$RUBY_VERSION.tar.gz -q -O - | tar xz --strip-components=1
 
 installing "Ruby"
 ./configure --prefix=/usr/local

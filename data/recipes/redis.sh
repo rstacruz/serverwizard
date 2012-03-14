@@ -1,6 +1,14 @@
 # #### BEGIN SCRIPT INFO ###
-# name: Redis 2.2
+# name: Redis 2.x
 # description: Compiled from source.
+# fields:
+#   REDIS_VERSION:
+#     name: Redis version
+#     inline: true
+#     options:
+#       - 2.2.12
+#       - 2.4.8
+#     default: 2.4.8
 # files:
 #  - redis/redis
 # needs:
@@ -11,7 +19,7 @@
 status "Downloading Redis..."
 mkdir -p ~/.src/redis-src
 cd ~/.src/redis-src
-wget "http://redis.googlecode.com/files/redis-2.2.12.tar.gz" -q -O - | tar xz --strip-components=1
+wget "http://redis.googlecode.com/files/redis-$REDIS_VERSION.tar.gz" -q -O - | tar xz --strip-components=1
 
 installing "Redis"
 make
