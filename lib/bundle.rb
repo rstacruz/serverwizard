@@ -176,6 +176,8 @@ class Bundle
     vars = non_inline_customs # A hash
 
     if vars.any?
+      output += heading("Custom variables")
+
       vars.each { |k, v|
         output += "export #{k}=#{v.inspect}\n"
       }
