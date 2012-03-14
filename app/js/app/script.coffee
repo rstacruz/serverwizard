@@ -20,7 +20,7 @@ $("input[type=checkbox]").live 'change', ->
   else
     $p.removeClass 'checked'
     $custom.hide()
-    $custom.find('input').attr('disabled', 1)
+    $custom.find('input, select').attr('disabled', 1)
 
 
 $("form").live 'submit', (e) ->
