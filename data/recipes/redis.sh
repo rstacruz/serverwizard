@@ -36,7 +36,7 @@ chmod 755 /etc/init.d/redis
 status "Making Redis start on system startup"
 update-rc.d redis defaults
 
-cd $DIR
+cd -
 rm -rf ~/.src/redis-src
 
 status  "Redis installed."

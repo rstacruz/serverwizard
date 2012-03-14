@@ -27,15 +27,15 @@ chmod 700 /home/$MY_USER/.ssh
 chmod 600 /home/$MY_USER/.ssh/authorized_keys
 chown -R $MY_USER:$MY_USER /home/$MY_USER/.ssh
 
-if [ -f "$DIR/ssh/id_rsa" ]; then
+if [ -f "./ssh/id_rsa" ]; then
   status "Adding private key to $MY_USER..."
-  cat "$DIR/ssh/id_rsa" > /home/$MY_USER/.ssh/id_rsa
+  cat "./ssh/id_rsa" > /home/$MY_USER/.ssh/id_rsa
   chmod 600 /home/$MY_USER/.ssh/id_rsa
 fi
 
-if [ -f "$DIR/ssh/id_rsa.pub" ]; then
+if [ -f "./ssh/id_rsa.pub" ]; then
   status "Adding public key to $MY_USER..."
-  cat "$DIR/ssh/id_rsa.pub" > /home/$MY_USER/.ssh/id_rsa.pub
+  cat "./ssh/id_rsa.pub" > /home/$MY_USER/.ssh/id_rsa.pub
   chmod 644 /home/$MY_USER/.ssh/id_rsa.pub
 fi
 

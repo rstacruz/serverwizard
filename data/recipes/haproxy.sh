@@ -42,7 +42,7 @@ chmod 755 /etc/init.d/haproxy
 status "Making Haproxy start on system startup"
 update-rc.d haproxy defaults
 
-cd $DIR
+cd -
 rm -rf ~/.src/haproxy-src
 
 status  "Haproxy installed."

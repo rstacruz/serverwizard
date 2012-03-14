@@ -37,5 +37,5 @@ make install
 installing "Node Package Manager"
 wget http://npmjs.org/install.sh -q -O - | sudo sh
 
-cd $DIR
+cd -
 rm -rf ~/.src/nodejs-src

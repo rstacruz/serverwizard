@@ -28,5 +28,5 @@ installing "Ruby"
 ./configure --prefix=/usr/local
 make && make install
 
-cd $DIR
+cd -
 rm -rf ~/.src/ruby-src

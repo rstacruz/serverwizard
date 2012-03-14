@@ -54,15 +54,15 @@ if [ -n "$SSH_PUBKEY" ]; then
   chmod 400 /home/$APP_USER/.ssh/authorized_keys
 fi
 
-if [ -f "$DIR/ssh/id_rsa.pub" ]; then
+if [ -f "./ssh/id_rsa.pub" ]; then
   status "Adding public key to $APP_USER..."
-  cat "$DIR/ssh/id_rsa.pub" > /home/$APP_USER/.ssh/id_rsa.pub
+  cat "./ssh/id_rsa.pub" > /home/$APP_USER/.ssh/id_rsa.pub
   chmod 644 /home/$APP_USER/.ssh/id_rsa.pub
 fi
 
-if [ -f "$DIR/ssh/id_rsa" ]; then
+if [ -f "./ssh/id_rsa" ]; then
   status "Adding private key to $APP_USER..."
-  cat "$DIR/ssh/id_rsa" > /home/$APP_USER/.ssh/id_rsa
+  cat "./ssh/id_rsa" > /home/$APP_USER/.ssh/id_rsa
   chmod 600 /home/$APP_USER/.ssh/id_rsa
 fi
 
@@ -78,7 +78,6 @@ mkdir -p $APP_LOGS_PATH
 status "Adding Nginx configuration ($APP_NGINX_CONF)..."
 source_file nginx/conf.d/app.conf.sh > $APP_NGINX_CONF
 
-cd "$APP_REPO_PATH"
 status "Setting up application..."
 #
 # (If you need to do things like 'bundle install', do it here.)
@@ -87,7 +86,7 @@ status "Setting up application..."
 # bundle install
 # rake setup
 #
-cd $DIR
+cd -
 
 status "Reloading nginx configuration..."
 "$NGINX_ROOT/sbin/nginx" -s reload
