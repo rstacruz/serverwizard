@@ -2,7 +2,7 @@
 # name: Haproxy 1.4
 # description: Compiled from source.
 # fields:
-#   HAPROXY_VERSION
+#   HAPROXY_VERSION:
 #     name: Haproxy version
 #     inline: true
 #     options:

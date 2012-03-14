@@ -13,10 +13,11 @@
 #     default: 1.9.3-p125
 # needs:
 # - _apt-update
+# - _build-essential
 # #### END SCRIPT INFO #####
 
 installing "Ruby dependencies"
-apt-get -y install libc6-dev libssl-dev libmysql++-dev libsqlite3-dev make build-essential libssl-dev libreadline5-dev zlib1g-dev unzip wget libyaml-dev
+apt-get -y install libc6-dev libssl-dev libmysql++-dev libsqlite3-dev libssl-dev libreadline5-dev zlib1g-dev unzip wget libyaml-dev
 
 status "Downloading Ruby..."
 mkdir -p ~/.src/ruby-src
