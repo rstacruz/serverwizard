@@ -23,7 +23,7 @@
           - if field.options?
             %select{:disabled => true, :name => "custom[#{field.id}]"}
               - field.options.each do |opt|
-                %option{:value => opt}= opt
+                %option{(field[:default] == opt ? {:selected => 1} : {}), :value => opt}= opt
           - else
             %input{:disabled => true, :type => 'text', :name => "custom[#{field.id}]", :value => field[:default], :placeholder => field[:placeholder]}
           - if field.description?

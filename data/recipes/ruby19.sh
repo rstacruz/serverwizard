@@ -10,7 +10,7 @@
 #       - ruby-1.9.2-p290
 #       - ruby-1.9.3-p0
 #       - ruby-1.9.3-p125
-#     default: ruby-1.9.3-p0
+#     default: ruby-1.9.3-p125
 # needs:
 # - _apt-update
 # #### END SCRIPT INFO #####
